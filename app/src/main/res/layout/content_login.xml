@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".LoginActivity"
+    tools:showIn="@layout/activity_login">
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="#F6FDFD"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="259dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:paddingBottom="20dp"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/email"
+        style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:capitalize="none"
+        android:elegantTextHeight="false"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Correo Electrónico"
+        android:inputType="textEmailAddress"
+        android:textAllCaps="false" />
+
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint=" Contraseña"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:capitalize="none"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Iniciar Sesión"
+        android:text="Iniciar Sesión"
+        android:textColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/logGoogle"
+        android:layout_width="382dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/googleg_standard_color_18" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="¿No tienes una cuenta?"
+        android:textAlignment="center"
+        android:textColor="#070101"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/singin"
+        android:layout_width="120dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="147dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
