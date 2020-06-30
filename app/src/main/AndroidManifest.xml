@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".AddPropiedadActivity"></activity>
+        <activity android:name=".adds.AddGarantiaActivity"></activity>
+        <activity android:name=".adds.AddPagareActivity" />
+        <activity android:name=".adds.AddHipotecaActivity" />
+        <activity android:name=".adds.AddPropiedadActivity" />
         <activity android:name=".SinginActivity" />
         <activity
             android:name=".ProfileMainActivity"

@@ -2,8 +2,7 @@ package com.riossoftware.myrealstate.listView;
 
 public class Propiedad {
 
-    private String tag, tipo,nombre;
-    private long telefono,valor;
+    private String tag, tipo,nombre,telefono,valor;
 
     public String getTag() {
         return tag;
@@ -13,11 +12,11 @@ public class Propiedad {
         this.tag = tag;
     }
 
-    public long getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(long valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
@@ -29,11 +28,11 @@ public class Propiedad {
         this.tipo = tipo;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

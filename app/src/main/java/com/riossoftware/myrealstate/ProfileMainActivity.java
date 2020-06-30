@@ -30,6 +30,10 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.riossoftware.myrealstate.adds.AddGarantiaActivity;
+import com.riossoftware.myrealstate.adds.AddHipotecaActivity;
+import com.riossoftware.myrealstate.adds.AddPagareActivity;
+import com.riossoftware.myrealstate.adds.AddPropiedadActivity;
 import com.riossoftware.myrealstate.listView.FirebaseHelper;
 import com.riossoftware.myrealstate.listView.Propiedad;
 
@@ -196,6 +200,38 @@ public class ProfileMainActivity extends AppCompatActivity {
             }
         });
 
+        btnAddPropiedad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileMainActivity.this, AddPropiedadActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        btnAddHipoteca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileMainActivity.this, AddHipotecaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAddPagare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileMainActivity.this, AddPagareActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAddGarantia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileMainActivity.this, AddGarantiaActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

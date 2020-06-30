@@ -6,41 +6,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/addGarantia"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_gravity="bottom|right"
-        android:layout_marginLeft="25dp"
-        android:orientation="horizontal"
-        android:visibility="invisible">
-
-        <TextView
-            android:id="@+id/txtGarantia"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/nunito_bold"
-            android:gravity="center|center_vertical"
-            android:text="Garantia"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddGarantia"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom|right|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            app:backgroundTint="@color/colorPrimaryDark"
-            app:fabSize="auto"
-            app:srcCompat="@drawable/iconwarranty" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/addPropiedad"
         android:layout_width="165dp"
         android:layout_height="60dp"
@@ -71,6 +36,40 @@
             app:backgroundTint="@color/colorPrimaryDark"
             app:fabSize="auto"
             app:srcCompat="@drawable/iconhouse" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addHipoteca"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/txtHipoteca"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center|center_vertical"
+            android:text="Hipoteca"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddHipoteca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right|end"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:fabSize="auto"
+            app:srcCompat="@drawable/iconhipoteca" />
 
     </LinearLayout>
 
@@ -109,36 +108,37 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/addHipoteca"
+        android:id="@+id/addGarantia"
         android:layout_width="160dp"
         android:layout_height="60dp"
+        android:layout_alignWithParentIfMissing="true"
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="25dp"
         android:orientation="horizontal"
         android:visibility="invisible">
 
         <TextView
-            android:id="@+id/txtHipoteca"
+            android:id="@+id/txtGarantia"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="@font/nunito_bold"
             android:gravity="center|center_vertical"
-            android:text="Hipoteca"
+            android:text="Garantia"
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddHipoteca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnAddGarantia"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom|right|end"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimaryDark"
             app:fabSize="auto"
-            app:srcCompat="@drawable/iconhipoteca" />
+            app:srcCompat="@drawable/iconwarranty" />
 
     </LinearLayout>
 

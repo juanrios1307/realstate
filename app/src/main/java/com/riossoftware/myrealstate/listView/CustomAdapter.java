@@ -51,8 +51,8 @@ public class CustomAdapter extends BaseAdapter {
 
         tag.setText(s.getTag());
         name.setText(s.getNombre());
-        tel.setText(Long.toString(s.getTelefono()));
-        valor.setText(Long.toString(s.getValor()));
+        tel.setText(s.getTelefono());
+        valor.setText(s.getValor());
 
         //ONITECLICK
         convertView.setOnClickListener(new View.OnClickListener() {
