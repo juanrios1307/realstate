@@ -46,6 +46,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView name=convertView.findViewById(R.id.txtname);
         TextView tel=convertView.findViewById(R.id.txttel);
         TextView valor=convertView.findViewById(R.id.txtaux);
+        TextView tipo=convertView.findViewById(R.id.txtTipo);
 
         final Propiedad s = (Propiedad) this.getItem(position);
 
@@ -53,6 +54,7 @@ public class CustomAdapter extends BaseAdapter {
         name.setText(s.getNombre());
         tel.setText(s.getTelefono());
         valor.setText(s.getValor());
+        tipo.setText(s.getTipo());
 
         //ONITECLICK
         convertView.setOnClickListener(new View.OnClickListener() {

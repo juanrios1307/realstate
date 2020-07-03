@@ -7,4 +7,100 @@
     android:orientation="vertical"
     tools:context=".adds.AddGarantiaActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <EditText
+        android:id="@+id/txtTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Etiqueta"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Valor Prestamo"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/txtTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Garantia"
+        android:fontFamily="@font/nunito_bold"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtFechaPrestamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:focusable="false"
+        android:hint="Fecha de Prestamo:"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/txtFechaVencimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Fecha de Vencimiento:"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/txtTiempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Tiempo prestamo (años)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre:"
+        android:fontFamily="@font/nunito_bold"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Telefono:"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Agregar"
+        android:textSize="18sp" />
+
+
 </LinearLayout>

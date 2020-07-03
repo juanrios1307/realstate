@@ -31,9 +31,8 @@
     <EditText
         android:id="@+id/email"
         style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-        android:layout_width="387dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:capitalize="none"
         android:elegantTextHeight="false"
@@ -45,9 +44,8 @@
 
     <EditText
         android:id="@+id/pwd"
-        android:layout_width="387dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:ems="10"
         android:fontFamily="@font/nunito_bold"
@@ -58,7 +56,7 @@
         android:id="@+id/login"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
         android:capitalize="none"
@@ -69,9 +67,9 @@
 
     <ImageButton
         android:id="@+id/logGoogle"
-        android:layout_width="382dp"
+        android:layout_width="200dp"
         android:layout_height="31dp"
-        android:layout_marginLeft="15dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/googleg_standard_color_18" />
 
@@ -90,7 +88,7 @@
         android:id="@+id/singin"
         android:layout_width="120dp"
         android:layout_height="28dp"
-        android:layout_marginLeft="147dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
         android:fontFamily="@font/nunito_bold"
