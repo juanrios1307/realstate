@@ -6,21 +6,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +28,6 @@ import com.riossoftware.myrealstate.LoginActivity;
 import com.riossoftware.myrealstate.ProfileMainActivity;
 import com.riossoftware.myrealstate.R;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -186,7 +181,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem menuItem){

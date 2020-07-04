@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Agregar Pago"
+        android:icon="@android:drawable/ic_input_get"
+        android:id="@+id/Pago"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Ver Historico"
+        android:icon="@android:drawable/ic_input_get"
+        android:id="@+id/Historico"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Ver datos"
+        android:icon="@android:drawable/ic_input_get"
+        android:id="@+id/Datos"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Pagos atrasados"
+        android:icon="@android:drawable/ic_input_get"
+        android:id="@+id/Atraso"
+        app:showAsAction="never"/>
+
+
+
+</menu>

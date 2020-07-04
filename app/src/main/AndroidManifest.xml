@@ -9,29 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".actions.PagosAtrasadosActivity"></activity>
+        <activity android:name=".actions.DatosActivity" />
+        <activity android:name=".actions.HistoricoActivity" />
+        <activity android:name=".actions.AddPagoActivity" />
         <activity
             android:name=".adds.AddGarantiaActivity"
+            android:label="Agregar Garantia"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Agregar Garantia"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adds.AddPagareActivity"
+            android:label="Agregar Pagaré"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Agregar Pagaré"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adds.AddHipotecaActivity"
+            android:label="Agregar Hipoteca"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Agregar Hipoteca"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adds.AddPropiedadActivity"
+            android:label="Agregar Propiedad"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Agregar Propiedad"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SinginActivity" />
         <activity
             android:name=".ProfileMainActivity"

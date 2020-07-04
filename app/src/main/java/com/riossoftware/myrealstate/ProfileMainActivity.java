@@ -9,14 +9,18 @@ import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,11 +34,15 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.riossoftware.myrealstate.actions.AddPagoActivity;
+import com.riossoftware.myrealstate.actions.DatosActivity;
+import com.riossoftware.myrealstate.actions.HistoricoActivity;
+import com.riossoftware.myrealstate.actions.PagosAtrasadosActivity;
 import com.riossoftware.myrealstate.adds.AddGarantiaActivity;
 import com.riossoftware.myrealstate.adds.AddHipotecaActivity;
 import com.riossoftware.myrealstate.adds.AddPagareActivity;
 import com.riossoftware.myrealstate.adds.AddPropiedadActivity;
-import com.riossoftware.myrealstate.listView.FirebaseHelper;
+import com.riossoftware.myrealstate.listView.CustomAdapter;
 import com.riossoftware.myrealstate.listView.Propiedad;
 
 import java.util.ArrayList;
@@ -59,7 +67,7 @@ public class ProfileMainActivity extends AppCompatActivity {
     boolean isFABOpen=false;
 
     //instance fields
-    FirebaseHelper helper;
+
     //CustomAdapter adapter;
 
     AlertDialog.Builder builder;
@@ -73,6 +81,9 @@ public class ProfileMainActivity extends AppCompatActivity {
 
         txtWelcome = (TextView) findViewById(R.id.lblWelcome);
         listView= (ListView) findViewById(R.id.listView);
+        registerForContextMenu(listView);
+        listView.setLongClickable(true);
+
         btnAdd =(FloatingActionButton)findViewById(R.id.btnAdd);
 
 
@@ -83,8 +94,108 @@ public class ProfileMainActivity extends AppCompatActivity {
         id = auth.getCurrentUser().getUid();
         db = FirebaseDatabase.getInstance().getReference("Users").child(id);
 
+        firebasehelper();
+        builder = new AlertDialog.Builder(this);
 
-        //Get token
+        declareAndSet();
+        closeFABMenu();
+
+    }
+
+
+    private void showFABMenu() {
+        isFABOpen = true;
+       /* addPropiedad.animate().translationY(-getResources().getDimension(R.dimen.standard_60));
+        addHipoteca.animate().translationY(-getResources().getDimension(R.dimen.standard_120));
+        addPagare.animate().translationY(-getResources().getDimension(R.dimen.standard_180));
+        addGarantia.animate().translationY(-getResources().getDimension(R.dimen.standard_240));*/
+
+        addPropiedad.setVisibility(View.VISIBLE);
+        addHipoteca.setVisibility(View.VISIBLE);
+        addPagare.setVisibility(View.VISIBLE);
+        addGarantia.setVisibility(View.VISIBLE);
+
+        txtCasa.setVisibility(View.VISIBLE);
+        txtHipoteca.setVisibility(View.VISIBLE);
+        txtPagare.setVisibility(View.VISIBLE);
+        txtGarantia.setVisibility(View.VISIBLE);
+
+
+        btnAddPropiedad.startAnimation(fab_open);
+        btnAddHipoteca.startAnimation(fab_open);
+        btnAddPagare.startAnimation(fab_open);
+        btnAddGarantia.startAnimation(fab_open);
+        btnAdd.startAnimation(fab_clock);
+
+        btnAddPropiedad.setClickable(true);
+        btnAddHipoteca.setClickable(true);
+        btnAddPagare.setClickable(true);
+        btnAddGarantia.setClickable(true);
+    }
+
+    private void closeFABMenu(){
+        isFABOpen=false;
+
+        addPropiedad.setVisibility(View.INVISIBLE);
+        addHipoteca.setVisibility(View.INVISIBLE);
+        addPagare.setVisibility(View.INVISIBLE);
+        addGarantia.setVisibility(View.INVISIBLE);
+
+
+        txtCasa.setVisibility(View.INVISIBLE);
+        txtHipoteca.setVisibility(View.INVISIBLE);
+        txtPagare.setVisibility(View.INVISIBLE);
+        txtGarantia.setVisibility(View.INVISIBLE);
+
+
+        btnAddPropiedad.startAnimation(fab_close);
+        btnAddHipoteca.startAnimation(fab_close);
+        btnAddPagare.startAnimation(fab_close);
+        btnAddGarantia.startAnimation(fab_close);
+        btnAdd.startAnimation(fab_anticlock);
+
+        btnAddPropiedad.setClickable(false);
+        btnAddHipoteca.setClickable(false);
+        btnAddPagare.setClickable(false);
+        btnAddGarantia.setClickable(false);
+
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        android.view.MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_listview, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(android.view.MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.Pago:
+                intent=new Intent(ProfileMainActivity.this, AddPagoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Historico:
+                intent=new Intent(ProfileMainActivity.this, HistoricoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Datos:
+                intent=new Intent(ProfileMainActivity.this, DatosActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Atraso:
+                intent=new Intent(ProfileMainActivity.this, PagosAtrasadosActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onContextItemSelected((android.view.MenuItem) item);
+        }
+    }
+
+    private void firebasehelper(){
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -111,41 +222,42 @@ public class ProfileMainActivity extends AppCompatActivity {
                 GenericTypeIndicator<UserPojo> user=new GenericTypeIndicator<UserPojo>() {};
                 UserPojo userPojo=dataSnapshot.getValue(user);
 
-
-
-                System.out.println(userPojo);
                 String text=getString(R.string.welcome_messages,userPojo.getName());
 
                 //mostramos en el textview
-               txtWelcome.setText(text);
+                txtWelcome.setText(text);
 
-               db.child("PROPIEDADES").addValueEventListener(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       for (DataSnapshot prop: snapshot.getChildren()) {
-                           tagsPropiedades.add ((String) prop.child("tag").getValue());
+                db.child("PROPIEDADES").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        propers.clear();
+                        if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                           GenericTypeIndicator<Propiedad> user=new GenericTypeIndicator<Propiedad>() {};
-                           propers.add(prop.getValue(user));
+                                Propiedad proper = ds.getValue(Propiedad.class);
+                                propers.add(proper);
+                            }
+                            System.out.println("props adapter: "+propers);
 
+                            CustomAdapter adapter = new CustomAdapter(ProfileMainActivity.this, propers);
+                            listView.setAdapter(adapter);
 
-                       }
+                            new Handler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listView.smoothScrollToPosition(propers.size());
+                                }
+                            });
+                        }
+                    }
 
-                       System.out.println("props tags: "+tagsPropiedades);
-                       System.out.println("props al: "+propers);;
-                       //propers=(HashMap<String, Propiedad>) snapshot.getValue(user);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.d("ERROR FIREBASE", databaseError.getMessage());
+                        Toast.makeText(ProfileMainActivity.this, "ERROR " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
-
-                       System.out.println("props 2:  "+propers);
-                       //System.out.println("props 2: "+propers.get("sauces"));
-                       System.out.println("props"+snapshot.getValue());
-                   }
-
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError error) {
-                       Log.e("ERROR FIREBASE", error.getMessage());
-                   }
-               });
+                    }
+                });
 
             }
 
@@ -155,12 +267,9 @@ public class ProfileMainActivity extends AppCompatActivity {
             }
         });
 
-        //Adaptador
+    }
 
-        helper = new FirebaseHelper(db, this, listView);
-
-        builder = new AlertDialog.Builder(this);
-
+    private void declareAndSet(){
         //Floating action button
         btnAdd =(FloatingActionButton)findViewById(R.id.btnAdd);
         btnAddPropiedad =(FloatingActionButton) findViewById(R.id.btnAddPropiedad);
@@ -184,8 +293,6 @@ public class ProfileMainActivity extends AppCompatActivity {
         txtHipoteca=(TextView)findViewById(R.id.txtHipoteca);
         txtPagare =(TextView)findViewById(R.id.txtPagare);
         txtGarantia=(TextView)findViewById(R.id.txtGarantia);
-
-        closeFABMenu();
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,77 +339,13 @@ public class ProfileMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
 
-
-    private void showFABMenu() {
-        isFABOpen = true;
-       /* addPropiedad.animate().translationY(-getResources().getDimension(R.dimen.standard_60));
-        addHipoteca.animate().translationY(-getResources().getDimension(R.dimen.standard_120));
-        addPagare.animate().translationY(-getResources().getDimension(R.dimen.standard_180));
-        addGarantia.animate().translationY(-getResources().getDimension(R.dimen.standard_240));*/
-
-        addPropiedad.setVisibility(View.VISIBLE);
-        addHipoteca.setVisibility(View.VISIBLE);
-        addPagare.setVisibility(View.VISIBLE);
-        addGarantia.setVisibility(View.VISIBLE);
-
-        txtCasa.setVisibility(View.VISIBLE);
-        txtHipoteca.setVisibility(View.VISIBLE);
-        txtPagare.setVisibility(View.VISIBLE);
-        txtGarantia.setVisibility(View.VISIBLE);
-
-
-        btnAddPropiedad.startAnimation(fab_open);
-        btnAddHipoteca.startAnimation(fab_open);
-        btnAddPagare.startAnimation(fab_open);
-        btnAddGarantia.startAnimation(fab_open);
-        btnAdd.startAnimation(fab_clock);
-
-        btnAddPropiedad.setClickable(true);
-        btnAddHipoteca.setClickable(true);
-        btnAddPagare.setClickable(true);
-        btnAddGarantia.setClickable(true);
-    }
-
-    private void closeFABMenu(){
-        isFABOpen=false;
-     /*   addPropiedad.animate().translationY(0);
-        addHipoteca.animate().translationY(0);
-        addPagare.animate().translationY(0);
-        addGarantia.animate().translationY(0);*/
-
-        addPropiedad.setVisibility(View.INVISIBLE);
-        addHipoteca.setVisibility(View.INVISIBLE);
-        addPagare.setVisibility(View.INVISIBLE);
-        addGarantia.setVisibility(View.INVISIBLE);
-
-
-        txtCasa.setVisibility(View.INVISIBLE);
-        txtHipoteca.setVisibility(View.INVISIBLE);
-        txtPagare.setVisibility(View.INVISIBLE);
-        txtGarantia.setVisibility(View.INVISIBLE);
-
-
-        btnAddPropiedad.startAnimation(fab_close);
-        btnAddHipoteca.startAnimation(fab_close);
-        btnAddPagare.startAnimation(fab_close);
-        btnAddGarantia.startAnimation(fab_close);
-        btnAdd.startAnimation(fab_anticlock);
-
-        btnAddPropiedad.setClickable(false);
-        btnAddHipoteca.setClickable(false);
-        btnAddPagare.setClickable(false);
-        btnAddGarantia.setClickable(false);
-
-
-    }
 
 
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem menuItem){
