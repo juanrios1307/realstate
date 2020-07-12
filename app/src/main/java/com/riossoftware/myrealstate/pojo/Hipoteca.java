@@ -2,7 +2,7 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Hipoteca {
 
-    String avaluo,direccion,fecha,ombre,tag,telefono,tiempo,tipo,valor;
+    String avaluo,direccion,fecha,interes,nombre,tag,telefono,tiempo,tipo,valor;
 
     public String getAvaluo() {
         return avaluo;
@@ -28,12 +28,20 @@ public class Hipoteca {
         this.fecha = fecha;
     }
 
-    public String getOmbre() {
-        return ombre;
+    public String getInteres() {
+        return interes;
     }
 
-    public void setOmbre(String ombre) {
-        this.ombre = ombre;
+    public void setInteres(String interes) {
+        this.interes = interes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String ombre) {
+        this.nombre = ombre;
     }
 
     public String getTag() {
@@ -74,5 +82,21 @@ public class Hipoteca {
 
     public void setValor(String valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Hipoteca{" +
+                "avaluo='" + avaluo + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", interes='" + interes + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tag='" + tag + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", tiempo='" + tiempo + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", valor='" + valor + '\'' +
+                '}';
     }
 }

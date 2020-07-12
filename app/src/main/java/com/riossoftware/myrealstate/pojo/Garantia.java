@@ -83,4 +83,20 @@ public class Garantia {
     public void setValor(String valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "Garantia{" +
+                "fechaprestamo='" + fechaprestamo + '\'' +
+                ", fechavencimiento='" + fechavencimiento + '\'' +
+                ", interes='" + interes + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tag='" + tag + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", tiempo='" + tiempo + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", tipoGarantia='" + tipoGarantia + '\'' +
+                ", valor='" + valor + '\'' +
+                '}';
+    }
 }

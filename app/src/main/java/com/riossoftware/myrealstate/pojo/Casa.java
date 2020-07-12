@@ -68,4 +68,18 @@ public class Casa {
     public void setRentada(boolean rentada) {
         this.rentada = rentada;
     }
+
+    @Override
+    public String toString() {
+        return "Casa{" +
+                "direccion='" + direccion + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tag='" + tag + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", valor='" + valor + '\'' +
+                ", rentada=" + rentada +
+                '}';
+    }
 }

@@ -155,7 +155,7 @@ public class AddPagoActivity extends AppCompatActivity {
     }
 
     public void guardarData(String valor,String fecha,String lugar){
-        if(!(valor.isEmpty() && fecha.isEmpty() && lugar.isEmpty())) {
+        if(!valor.isEmpty() && !fecha.isEmpty() && !lugar.isEmpty()) {
             Map<String,Object> data=new HashMap<>();
 
             data.put("valor",valor);

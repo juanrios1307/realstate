@@ -166,6 +166,7 @@ public class ProfileMainActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         android.view.MenuInflater inflater = getMenuInflater();
+
         inflater.inflate(R.menu.menu_listview, menu);
     }
 
@@ -187,7 +188,7 @@ public class ProfileMainActivity extends AppCompatActivity {
                 return true;
             case R.id.Datos:
                 intent=new Intent(ProfileMainActivity.this, DatosActivity.class);
-                //intent.putExtra("tag",prop.getTag());
+                intent.putExtra("tag","try");
                 startActivity(intent);
                 return true;
             case R.id.Atraso:
