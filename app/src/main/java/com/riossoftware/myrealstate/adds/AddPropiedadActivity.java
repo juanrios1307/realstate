@@ -35,7 +35,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
 
 
 
-    TextView txtTag,txtNombre,txtTelefono,txtCanon,txtFecha,txtDireccion;
+    TextView txtTag,txtNombre,txtTelefono,txtCanon,txtCanonP,txtFecha,txtDireccion;
     RadioGroup rgRent;
     RadioButton rbSi,rbNo;
     View rent,noRent;
@@ -74,6 +74,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
         txtNombre=(TextView)findViewById(R.id.txtName);
         txtTelefono=(TextView) findViewById(R.id.txtPhone);
         txtCanon=(TextView)findViewById(R.id.txtCanon);
+        txtCanonP=(TextView)findViewById(R.id.txtCanonP);
         txtFecha=(TextView)findViewById(R.id.txtFecha);
         txtDireccion=(TextView)findViewById(R.id.txtAdress);
 
@@ -110,22 +111,22 @@ public class AddPropiedadActivity extends AppCompatActivity{
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nombre,telefono;
+                String nombre,telefono,valor;
                 String fecha;
                 if(isRent){
                     nombre=txtNombre.getText().toString();
                     telefono=txtTelefono.getText().toString();
                     fecha=txtFecha.getText().toString();
+                    valor=txtCanon.getText().toString();
                 }else{
                     nombre="No arrendada";
                     telefono="";
                     fecha=null;
+                    valor=txtCanonP.getText().toString();
                 }
+                guardarData(txtTag.getText().toString(),txtDireccion.getText().toString(),isRent,nombre,telefono,valor,fecha);
 
-                guardarData(txtTag.getText().toString(),txtDireccion.getText().toString(),isRent,nombre,telefono,txtCanon.getText().toString(),fecha);
-                Intent intent=new Intent(AddPropiedadActivity.this, ProfileMainActivity.class);
-                startActivity(intent);
-                finish();
+
             }
         });
 
@@ -147,7 +148,8 @@ public class AddPropiedadActivity extends AppCompatActivity{
 
     private void guardarData(String tag, String direccion, boolean isRent, String nombre, String telefono,String canon, String fecha){
 
-        if(!(tag.isEmpty() && direccion.isEmpty() && nombre.isEmpty() && canon.isEmpty())){
+        if(!tag.isEmpty() && !direccion.isEmpty() && !nombre.isEmpty() &&
+                !telefono.isEmpty() && !canon.isEmpty() && !fecha.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
@@ -167,6 +169,9 @@ public class AddPropiedadActivity extends AppCompatActivity{
                     if(task.isSuccessful()) {
 
                         Toast.makeText(AddPropiedadActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Intent intent=new Intent(AddPropiedadActivity.this, ProfileMainActivity.class);
+                        startActivity(intent);
+
 
                     }else {
                         Toast.makeText(AddPropiedadActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);

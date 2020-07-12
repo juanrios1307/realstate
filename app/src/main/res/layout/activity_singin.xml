@@ -60,8 +60,9 @@
     <Button
         android:id="@+id/btnsignin"
         android:layout_width="171dp"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="35dp"
         android:layout_weight="1"
         android:background="@color/colorPrimary"
         android:fontFamily="@font/nunito_bold"

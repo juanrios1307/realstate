@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class AddHipotecaActivity extends AppCompatActivity {
 
-    TextView txtTag,txtValor,txtDireccion,txtAvaluo,txtFecha,txtTiempo,txtNombre,txtTelefono;
+    TextView txtTag,txtValor,txtDireccion,txtAvaluo,txtFecha,txtTiempo,txtNombre,txtTelefono,txtInteres;
     Button btnGuardar;
 
     FirebaseAuth auth;
@@ -56,6 +56,7 @@ public class AddHipotecaActivity extends AppCompatActivity {
 
         txtTag=(TextView) findViewById(R.id.txtTag);
         txtValor=(TextView)findViewById(R.id.txtValor);
+        txtInteres=(TextView)findViewById(R.id.txtInteres);
         txtDireccion=(TextView)findViewById(R.id.txtAdress);
         txtAvaluo=(TextView)findViewById(R.id.txtAvaluo);
         txtFecha=(TextView)findViewById(R.id.txtFecha);
@@ -76,7 +77,8 @@ public class AddHipotecaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                guardarData(txtTag.getText().toString(),txtValor.getText().toString(),txtDireccion.getText().toString(),
+                guardarData(txtTag.getText().toString(),txtValor.getText().toString(),txtInteres.getText().toString()
+                        ,txtDireccion.getText().toString(),
                         txtAvaluo.getText().toString(),txtFecha.getText().toString(),txtTiempo.getText().toString(),
                         txtNombre.getText().toString(),txtTelefono.getText().toString());
                 Intent intent=new Intent(AddHipotecaActivity.this, ProfileMainActivity.class);
@@ -101,18 +103,21 @@ public class AddHipotecaActivity extends AppCompatActivity {
         newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 
-    private void guardarData(String tag, String valor ,String direccion, String avaluo, String fecha, String tiempo,String nombre, String telefono){
+    private void guardarData(String tag, String valor, String interes ,String direccion, String avaluo, String fecha,
+                             String tiempo,String nombre, String telefono){
 
-        if(!(tag.isEmpty() && valor.isEmpty() && direccion.isEmpty() && avaluo.isEmpty() && fecha.isEmpty() && tiempo.isEmpty() && nombre.isEmpty() && telefono.isEmpty())){
+        if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() && !direccion.isEmpty() && !avaluo.isEmpty()
+                && !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
             data.put("tipo","hipoteca");
             data.put("valor",valor);
+            data.put("interes",interes);
             data.put("direccion",direccion);
             data.put("avaluo",avaluo);
             data.put("fecha",fecha);
-            data.put("tiempo",tiempo+"años");
+            data.put("tiempo",tiempo+" años");
             data.put("nombre",nombre);
             data.put("telefono",telefono);
 

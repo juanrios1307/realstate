@@ -173,21 +173,26 @@ public class ProfileMainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(android.view.MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Intent intent;
+        System.out.println("Proper"+item.getTitle());
         switch (item.getItemId()) {
             case R.id.Pago:
                 intent=new Intent(ProfileMainActivity.this, AddPagoActivity.class);
+                intent.putExtra("tag","sauces");
                 startActivity(intent);
                 return true;
             case R.id.Historico:
                 intent=new Intent(ProfileMainActivity.this, HistoricoActivity.class);
+                //intent.putExtra("tag",prop.getTag());
                 startActivity(intent);
                 return true;
             case R.id.Datos:
                 intent=new Intent(ProfileMainActivity.this, DatosActivity.class);
+                //intent.putExtra("tag",prop.getTag());
                 startActivity(intent);
                 return true;
             case R.id.Atraso:
                 intent=new Intent(ProfileMainActivity.this, PagosAtrasadosActivity.class);
+                //intent.putExtra("tag",prop.getTag());
                 startActivity(intent);
                 return true;
             default:
@@ -320,6 +325,7 @@ public class ProfileMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileMainActivity.this, AddHipotecaActivity.class);
+
                 startActivity(intent);
             }
         });

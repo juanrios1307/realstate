@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class AddPagareActivity extends AppCompatActivity {
 
-    TextView txtTag,txtValor,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono;
+    TextView txtTag,txtValor,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono,txtInteres;
     Button btnGuardar;
 
     FirebaseAuth auth;
@@ -56,6 +56,7 @@ public class AddPagareActivity extends AppCompatActivity {
 
         txtTag=(TextView) findViewById(R.id.txtTag);
         txtValor=(TextView)findViewById(R.id.txtValor);
+        txtInteres=(TextView)findViewById(R.id.txtInteres);
         txtFecha=(TextView)findViewById(R.id.txtFechaPrestamo);
         txtFechaVenc=(TextView)findViewById(R.id.txtFechaVencimiento);
         txtTiempo=(TextView)findViewById(R.id.txtTiempo);
@@ -82,7 +83,8 @@ public class AddPagareActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                guardarData(txtTag.getText().toString(),txtValor.getText().toString(),txtFecha.getText().toString(),
+                guardarData(txtTag.getText().toString(),txtValor.getText().toString(), txtInteres.getText().toString(),
+                        txtFecha.getText().toString(),
                         txtFechaVenc.getText().toString(),txtTiempo.getText().toString(),
                         txtNombre.getText().toString(),txtTelefono.getText().toString());
                 Intent intent=new Intent(AddPagareActivity.this, ProfileMainActivity.class);
@@ -120,17 +122,20 @@ public class AddPagareActivity extends AppCompatActivity {
         newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 
-    private void guardarData(String tag, String valor, String fecha, String fechaVenc,String tiempo,String nombre, String telefono){
+    private void guardarData(String tag, String valor,String interes, String fecha, String fechaVenc,
+                             String tiempo,String nombre, String telefono){
 
-        if(!(tag.isEmpty() && valor.isEmpty() && fechaVenc.isEmpty() && fecha.isEmpty() && tiempo.isEmpty() && nombre.isEmpty() && telefono.isEmpty())){
+        if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() && !fechaVenc.isEmpty() &&
+                !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
             data.put("tipo","pagaré");
             data.put("valor",valor);
+            data.put("interes",interes);
             data.put("fechaprestamo",fecha);
             data.put("fechavencimiento",fechaVenc);
-            data.put("tiempo",tiempo+"años");
+            data.put("tiempo",tiempo+" años");
             data.put("nombre",nombre);
             data.put("telefono",telefono);
 
