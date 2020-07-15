@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Valor Hipoteca"
         android:inputType="number" />
 
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Interes Mensual ($)"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="number" />
 
     <EditText
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Dirección :"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="textPersonName" />
 
     <EditText
@@ -54,6 +57,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Avaluo propiedad:"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="number" />
 
     <EditText
@@ -64,6 +68,7 @@
         android:ems="10"
         android:focusable="false"
         android:hint="Fecha de Prestamo:"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="date" />
 
     <EditText
@@ -81,6 +86,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre:"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="textPersonName" />
 
     <EditText
@@ -88,6 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Telefono:"
         android:inputType="phone" />
 
@@ -99,6 +106,7 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorPrimaryDark"
         android:fontFamily="@font/nunito_bold"
+        android:padding="15dp"
         android:text="Agregar"
         android:textSize="18sp" />
 

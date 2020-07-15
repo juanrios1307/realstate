@@ -184,6 +184,7 @@ public class ProfileMainActivity extends AppCompatActivity {
             case R.id.Historico:
                 intent=new Intent(ProfileMainActivity.this, HistoricoActivity.class);
                 //intent.putExtra("tag",prop.getTag());
+                intent.putExtra("tag","sauces");
                 startActivity(intent);
                 return true;
             case R.id.Datos:

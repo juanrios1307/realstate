@@ -137,7 +137,7 @@ public class DatosActivity extends AppCompatActivity {
         l1.setText("Dirección: "+c.getDireccion());
         l2.setText("Fecha arrendamiento: "+c.getFecha());
         l3.setText(rent);
-        l4.setText("Canon: "+c.getValor());
+        l4.setText("Canon: $"+c.getValor());
 
     }
 
@@ -145,7 +145,7 @@ public class DatosActivity extends AppCompatActivity {
         l1.setText("Avaluo propiedad: "+h.getAvaluo());
         l2.setText("Dirección: "+h.getDireccion());
         l3.setText("Fecha prestamo: "+h.getFecha());
-        l4.setText("Interes: "+h.getInteres());
+        l4.setText("Interes: $"+h.getInteres());
         l5.setText("Nombre: "+h.getNombre());
         l6.setText("Telefono: "+h.getTelefono());
         l7.setText("Tiempo prestamo: "+h.getTiempo());
@@ -155,7 +155,7 @@ public class DatosActivity extends AppCompatActivity {
     private void setPagare(Pagare p){
         l1.setText("Fecha prestamo: "+p.getFechaprestamo());
         l2.setText("Fecha vencimiento: "+p.getFechavencimiento());
-        l3.setText("Interes: "+p.getInteres());
+        l3.setText("Interes : $"+p.getInteres());
         l4.setText("Nombre: "+p.getNombre());
         l5.setText("Telefono: "+p.getTelefono());
         l6.setText("Tiempo prestamo: "+p.getTiempo());
@@ -166,7 +166,7 @@ public class DatosActivity extends AppCompatActivity {
     private  void setGarantia(Garantia g){
         l1.setText("Fecha prestamo: "+g.getFechaprestamo());
         l2.setText("Fecha vencimiento: "+g.getFechavencimiento());
-        l3.setText("Interes: "+g.getInteres());
+        l3.setText("Interes: $"+g.getInteres());
         l4.setText("Nombre: "+g.getNombre());
         l5.setText("Telefono: "+g.getTelefono());
         l6.setText("Tiempo prestamo: "+g.getTiempo());

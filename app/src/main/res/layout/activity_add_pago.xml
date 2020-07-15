@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_bold"
             android:text="Completo" />
 
         <RadioButton
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_bold"
             android:text="Parcial" />
     </RadioGroup>
 
@@ -63,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Valor"
         android:inputType="number" />
 
@@ -74,6 +77,7 @@
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Fecha de pago:"
         android:inputType="date" />
 

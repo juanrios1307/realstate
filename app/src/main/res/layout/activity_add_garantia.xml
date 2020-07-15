@@ -107,6 +107,7 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorPrimaryDark"
         android:fontFamily="@font/nunito_bold"
+        android:padding="15dp"
         android:text="Agregar"
         android:textSize="18sp" />
 

@@ -9,10 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".actions.PagosAtrasadosActivity"></activity>
-        <activity android:name=".actions.DatosActivity" />
-        <activity android:name=".actions.HistoricoActivity" />
-        <activity android:name=".actions.AddPagoActivity" />
+        <activity android:name=".actions.PagosAtrasadosActivity"
+            android:label="Pagos Atrasados"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity android:name=".actions.DatosActivity"
+            android:label="Datos"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actions.HistoricoActivity"
+            android:label="Pagos Historico"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actions.AddPagoActivity"
+            android:label="Agregar Pago"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adds.AddGarantiaActivity"
             android:label="Agregar Garantia"

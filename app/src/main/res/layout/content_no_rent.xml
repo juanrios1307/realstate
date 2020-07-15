@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Canon:"
+        android:fontFamily="@font/nunito_bold"
         android:inputType="number" />
 
 </LinearLayout>

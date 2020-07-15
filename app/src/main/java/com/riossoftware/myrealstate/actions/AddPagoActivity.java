@@ -162,7 +162,7 @@ public class AddPagoActivity extends AppCompatActivity {
             data.put("fecha",fecha);
             data.put("lugar",lugar);
 
-            propiedades.child(tag).child(fecha).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            propiedades.child(tag).child("PAGOS").child(fecha).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()) {

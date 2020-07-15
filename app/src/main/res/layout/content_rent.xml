@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Nombre:"
         android:inputType="textPersonName" />
 
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Telefono:"
         android:inputType="phone" />
 
@@ -26,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Canon:"
         android:inputType="number" />
 
@@ -36,6 +39,7 @@
         android:ems="10"
         android:hint="Fecha de Arrendamiento:"
         android:inputType="date"
+        android:fontFamily="@font/nunito_bold"
         android:focusable="false"
         android:clickable="true" />
 

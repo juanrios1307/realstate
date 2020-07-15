@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nunito_bold"
         android:hint="Interes Mensual ($)"
         android:inputType="number" />
 
@@ -98,6 +99,7 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorPrimaryDark"
         android:fontFamily="@font/nunito_bold"
+        android:padding="15dp"
         android:text="Agregar"
         android:textSize="18sp" />
 </LinearLayout>
