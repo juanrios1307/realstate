@@ -35,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
                 if(auth2.getCurrentUser() != null){
                     FirebaseUser firebaseUser = auth2.getCurrentUser();
-                    System.out.println("Estado de autentificacion - Logueado");
                     Intent intent = new Intent(MainActivity.this, ProfileMainActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else{
 
-                    System.out.println("Estado de autentificacion - Cerró sesión");
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

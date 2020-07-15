@@ -58,7 +58,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 email = txtemail.getText().toString();
                 pwd = txtpwd.getText().toString();
-                readUser();
+                if(!email.isEmpty() && !pwd.isEmpty())
+                    readUser();
+                else
+                    Toast.makeText(LoginActivity.this,"Ingrese por favor todos los datos",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -85,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Ingreso Exitoso", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, ProfileMainActivity.class);
                     startActivity(intent);
-                    finish();
                 }
             }
         });

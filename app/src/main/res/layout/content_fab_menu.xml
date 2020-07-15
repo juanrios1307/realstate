@@ -11,6 +11,7 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="25dp"
+        android:background="@color/buttonTextColor"
         android:orientation="horizontal"
         android:visibility="invisible">
 
@@ -41,10 +42,11 @@
 
     <LinearLayout
         android:id="@+id/addHipoteca"
-        android:layout_width="160dp"
+        android:layout_width="165dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="25dp"
+        android:background="@color/buttonTextColor"
         android:orientation="horizontal"
         android:visibility="invisible">
 
@@ -75,10 +77,11 @@
 
     <LinearLayout
         android:id="@+id/addPagare"
-        android:layout_width="160dp"
+        android:layout_width="165dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="25dp"
+        android:background="@color/buttonTextColor"
         android:orientation="horizontal"
         android:visibility="invisible">
 
@@ -109,11 +112,12 @@
 
     <LinearLayout
         android:id="@+id/addGarantia"
-        android:layout_width="160dp"
+        android:layout_width="165dp"
         android:layout_height="60dp"
         android:layout_alignWithParentIfMissing="true"
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="25dp"
+        android:background="@color/buttonTextColor"
         android:orientation="horizontal"
         android:visibility="invisible">
 

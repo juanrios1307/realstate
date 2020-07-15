@@ -129,17 +129,17 @@ public class AddHipotecaActivity extends AppCompatActivity {
 
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddHipotecaActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddHipotecaActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
 
                     }else {
-                        Toast.makeText(AddHipotecaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddHipotecaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
 
                 }
             });
 
         }else{
-            Toast.makeText(AddHipotecaActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG);
+            Toast.makeText(AddHipotecaActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 

@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.riossoftware.myrealstate.LoginActivity;
 import com.riossoftware.myrealstate.ProfileMainActivity;
 import com.riossoftware.myrealstate.R;
 import com.riossoftware.myrealstate.UserPojo;
@@ -129,5 +134,39 @@ public class HistoricoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        switch (menuItem.getItemId()){
+            case R.id.SingOut:
+                builder.setMessage("¿Estas seguro de cerrar sesión?")
+                        .setCancelable(true)
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent=new Intent(HistoricoActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("My Real State");
+                alert.setIcon(R.mipmap.ic_launcher);
+                alert.show();
+                break;
+        }
+        return true;
     }
 }

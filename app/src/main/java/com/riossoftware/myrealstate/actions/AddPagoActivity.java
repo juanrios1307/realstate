@@ -98,6 +98,8 @@ public class AddPagoActivity extends AppCompatActivity {
             }
         });
 
+        place="Efectivo";
+
         lugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -121,12 +123,8 @@ public class AddPagoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                System.out.println("Data: "+txtValor.getText().toString()+" 2: "+txtFecha.getText().toString()+" 3: "+place);
                 guardarData(txtValor.getText().toString(),txtFecha.getText().toString(),place);
-                Intent intent =new Intent(AddPagoActivity.this, ProfileMainActivity.class);
-                startActivity(intent);
-                finish();
+
             }
         });
 
@@ -167,15 +165,19 @@ public class AddPagoActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddPagoActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPagoActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
+                        Intent intent =new Intent(AddPagoActivity.this, HistoricoActivity.class);
+                        intent.putExtra("tag",tag);
+                        startActivity(intent);
+                        finish();
 
                     }else {
-                        Toast.makeText(AddPagoActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPagoActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
                 }
             });
         }else{
-            Toast.makeText(AddPagoActivity.this,"Complete todos los datos",Toast.LENGTH_LONG);
+            Toast.makeText(AddPagoActivity.this,"Complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 

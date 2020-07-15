@@ -77,16 +77,14 @@ public class SinginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<InstanceIdResult> task) {
                                             if (!task.isSuccessful()) {
-                                                Log.w("Token", "getInstanceId failed", task.getException());
+
                                                 return;
                                             }
 
                                             // Get new Instance ID token
                                             token = task.getResult().getToken();
 
-                                            // Log and toast
-                                            String msg ="Token: "+token;
-                                            Log.d("Token", msg);
+
                                         }
                                     });
 

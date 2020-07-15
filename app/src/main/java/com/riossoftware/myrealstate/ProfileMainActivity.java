@@ -214,11 +214,7 @@ public class ProfileMainActivity extends AppCompatActivity {
 
                         // Get new Instance ID token
                         token = task.getResult().getToken();
-                        System.out.println("TOPIC token: " + token);
 
-                        // Log and toast
-                        String msg = "Token: " + token;
-                        Log.d("Token", msg);
                     }
                 });
 
@@ -244,7 +240,7 @@ public class ProfileMainActivity extends AppCompatActivity {
                                 Propiedad proper = ds.getValue(Propiedad.class);
                                 propers.add(proper);
                             }
-                            System.out.println("props adapter: "+propers);
+
 
                             CustomAdapter adapter = new CustomAdapter(ProfileMainActivity.this, propers);
                             listView.setAdapter(adapter);
@@ -260,7 +256,7 @@ public class ProfileMainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Log.d("ERROR FIREBASE", databaseError.getMessage());
+
                         Toast.makeText(ProfileMainActivity.this, "ERROR " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
@@ -270,7 +266,7 @@ public class ProfileMainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("ERROR FIREBASE", databaseError.getMessage());
+
             }
         });
 

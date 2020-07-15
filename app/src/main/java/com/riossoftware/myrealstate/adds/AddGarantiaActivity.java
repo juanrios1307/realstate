@@ -150,17 +150,17 @@ public class AddGarantiaActivity extends AppCompatActivity {
 
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddGarantiaActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddGarantiaActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
 
                     }else {
-                        Toast.makeText(AddGarantiaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddGarantiaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
 
                 }
             });
 
         }else{
-            Toast.makeText(AddGarantiaActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG);
+            Toast.makeText(AddGarantiaActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 

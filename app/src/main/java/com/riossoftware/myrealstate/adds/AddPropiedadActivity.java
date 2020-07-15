@@ -168,20 +168,20 @@ public class AddPropiedadActivity extends AppCompatActivity{
 
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddPropiedadActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPropiedadActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
                         Intent intent=new Intent(AddPropiedadActivity.this, ProfileMainActivity.class);
                         startActivity(intent);
 
 
                     }else {
-                        Toast.makeText(AddPropiedadActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPropiedadActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
 
                 }
             });
 
         }else{
-            Toast.makeText(AddPropiedadActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG);
+            Toast.makeText(AddPropiedadActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 

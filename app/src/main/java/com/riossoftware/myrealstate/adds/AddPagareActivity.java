@@ -147,17 +147,17 @@ public class AddPagareActivity extends AppCompatActivity {
 
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddPagareActivity.this,"Datos subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPagareActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
 
                     }else {
-                        Toast.makeText(AddPagareActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG);
+                        Toast.makeText(AddPagareActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
 
                 }
             });
 
         }else{
-            Toast.makeText(AddPagareActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG);
+            Toast.makeText(AddPagareActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 
