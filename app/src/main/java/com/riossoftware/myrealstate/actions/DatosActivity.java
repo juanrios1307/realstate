@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ import com.riossoftware.myrealstate.pojo.Pagare;
 public class DatosActivity extends AppCompatActivity {
 
     TextView txtT,ltipo,ltag,l1,l2,l3,l4,l5,l6,l7,l8;
+    Button btnHistory;
 
     FirebaseAuth auth;
     DatabaseReference db,propiedades;
@@ -68,8 +70,19 @@ public class DatosActivity extends AppCompatActivity {
         l6=(TextView)findViewById(R.id.txt6);
         l7=(TextView)findViewById(R.id.txt7);
         l8=(TextView)findViewById(R.id.txt8);
+        btnHistory=(Button) findViewById(R.id.btnHistory);
 
         getData();
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,HistoricoActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
 
     }
 

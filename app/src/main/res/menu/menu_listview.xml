@@ -25,7 +25,11 @@
         android:icon="@android:drawable/ic_input_get"
         android:id="@+id/Atraso"
         app:showAsAction="never"/>
-
+    <item
+        android:id="@+id/PagoTotal"
+        android:icon="@android:drawable/ic_input_get"
+        android:title="Pago Total"
+        app:showAsAction="never" />
 
 
 </menu>

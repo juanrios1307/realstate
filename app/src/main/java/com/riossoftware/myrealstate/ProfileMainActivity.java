@@ -37,6 +37,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.riossoftware.myrealstate.actions.AddPagoActivity;
 import com.riossoftware.myrealstate.actions.DatosActivity;
 import com.riossoftware.myrealstate.actions.HistoricoActivity;
+import com.riossoftware.myrealstate.actions.PagoTotalActivity;
 import com.riossoftware.myrealstate.actions.PagosAtrasadosActivity;
 import com.riossoftware.myrealstate.adds.AddGarantiaActivity;
 import com.riossoftware.myrealstate.adds.AddHipotecaActivity;
@@ -46,6 +47,7 @@ import com.riossoftware.myrealstate.listView.CustomAdapter;
 import com.riossoftware.myrealstate.listView.Propiedad;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProfileMainActivity extends AppCompatActivity {
 
@@ -58,7 +60,9 @@ public class ProfileMainActivity extends AppCompatActivity {
 
 
     ArrayList<Propiedad> propers=new ArrayList<Propiedad>();
-    ArrayList<String> tagsPropiedades=new ArrayList<String>();
+    Propiedad propiedadAux;
+
+
 
     String token="";
     FirebaseAuth auth;
@@ -99,6 +103,10 @@ public class ProfileMainActivity extends AppCompatActivity {
 
         declareAndSet();
         closeFABMenu();
+
+
+
+
 
     }
 
@@ -174,29 +182,40 @@ public class ProfileMainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(android.view.MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Intent intent;
-        System.out.println("Proper"+item.getTitle());
+        Propiedad pAux = (Propiedad) listView.getItemAtPosition(info.position);
+        String tag=pAux.getTag();
+
+
         switch (item.getItemId()) {
             case R.id.Pago:
                 intent=new Intent(ProfileMainActivity.this, AddPagoActivity.class);
-                intent.putExtra("tag","sauces");
+                intent.putExtra("tag",tag);
                 startActivity(intent);
                 return true;
             case R.id.Historico:
                 intent=new Intent(ProfileMainActivity.this, HistoricoActivity.class);
-                //intent.putExtra("tag",prop.getTag());
-                intent.putExtra("tag","sauces");
+                intent.putExtra("tag",tag);
                 startActivity(intent);
                 return true;
             case R.id.Datos:
                 intent=new Intent(ProfileMainActivity.this, DatosActivity.class);
-                intent.putExtra("tag","try");
+                intent.putExtra("tag",tag);
                 startActivity(intent);
                 return true;
             case R.id.Atraso:
                 intent=new Intent(ProfileMainActivity.this, PagosAtrasadosActivity.class);
-                //intent.putExtra("tag",prop.getTag());
+                intent.putExtra("tag",tag);
                 startActivity(intent);
                 return true;
+            case R.id.PagoTotal:
+                if(!pAux.getTipo().equals("casa")){
+                    intent=new Intent(ProfileMainActivity.this, PagoTotalActivity.class);
+                    intent.putExtra("tag",tag);
+                    startActivity(intent);
+                    return true;
+                }else{
+
+                }
             default:
                 return super.onContextItemSelected((android.view.MenuItem) item);
         }
@@ -344,9 +363,6 @@ public class ProfileMainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);

@@ -126,4 +126,14 @@
         android:textSize="18sp"
         android:visibility="visible" />
 
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimary"
+        android:padding="15dp"
+        android:text="Ver historico de pagos" />
+
 </LinearLayout>
