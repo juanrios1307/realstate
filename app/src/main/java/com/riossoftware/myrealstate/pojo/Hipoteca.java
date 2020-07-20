@@ -2,7 +2,36 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Hipoteca {
 
-    String avaluo,direccion,fecha,interes,nombre,tag,telefono,tiempo,tipo,valor;
+    String avaluo;
+    String direccion;
+    String fecha;
+    String interes;
+    String nombre;
+    String tag;
+    String telefono;
+    String tiempo;
+    String tipo;
+    String valor;
+    String fecha_vencimiento;
+    String pagos_atrasados;
+
+    public String getFecha_vencimiento() {
+        return fecha_vencimiento;
+    }
+
+    public void setFecha_vencimiento(String fecha_vencimiento) {
+        this.fecha_vencimiento = fecha_vencimiento;
+    }
+
+    public String getPagos_atrasados() {
+        return pagos_atrasados;
+    }
+
+    public void setPagos_atrasados(String pagos_atrasados) {
+        this.pagos_atrasados = pagos_atrasados;
+    }
+
+
 
     public String getAvaluo() {
         return avaluo;

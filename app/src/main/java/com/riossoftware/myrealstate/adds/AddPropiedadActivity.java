@@ -35,7 +35,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
 
 
 
-    TextView txtTag,txtNombre,txtTelefono,txtCanon,txtCanonP,txtFecha,txtDireccion;
+    TextView txtTag,txtNombre,txtTelefono,txtCanon,txtCanonP,txtFecha,txtDireccion,txtFMI,txtPredial,txtFechaPredial,txtAvaluo,txtArriendosAtrasados;
     RadioGroup rgRent;
     RadioButton rbSi,rbNo;
     View rent,noRent;
@@ -77,6 +77,11 @@ public class AddPropiedadActivity extends AppCompatActivity{
         txtCanonP=(TextView)findViewById(R.id.txtCanonP);
         txtFecha=(TextView)findViewById(R.id.txtFecha);
         txtDireccion=(TextView)findViewById(R.id.txtAdress);
+        txtFMI=(TextView)findViewById(R.id.txtFMI);
+        txtPredial=(TextView)findViewById(R.id.txtImpuesto);
+        txtFechaPredial=(TextView)findViewById(R.id.txtFechaIP);
+        txtArriendosAtrasados=(TextView)findViewById(R.id.txtPagosAtrasados);
+        txtAvaluo=(TextView)findViewById(R.id.txtAvaluo);
 
 
         rent= (View) findViewById(R.id.rent);
@@ -107,24 +112,33 @@ public class AddPropiedadActivity extends AppCompatActivity{
                 showDatePickerDialog();
             }
         });
+        txtFechaPredial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog2();
+            }
+        });
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nombre,telefono,valor;
+                String nombre,telefono,valor,arriendosAtrasados;
                 String fecha;
                 if(isRent){
                     nombre=txtNombre.getText().toString();
                     telefono=txtTelefono.getText().toString();
                     fecha=txtFecha.getText().toString();
                     valor=txtCanon.getText().toString();
+                    arriendosAtrasados=txtArriendosAtrasados.getText().toString();
                 }else{
                     nombre="No arrendada";
                     telefono="";
                     fecha=null;
                     valor=txtCanonP.getText().toString();
+                    arriendosAtrasados="" ;
                 }
-                guardarData(txtTag.getText().toString(),txtDireccion.getText().toString(),isRent,nombre,telefono,valor,fecha);
+                guardarData(txtTag.getText().toString(),txtFMI.getText().toString(),txtAvaluo.getText().toString(),txtPredial.getText().toString(),txtFechaPredial.getText().toString()
+                        ,txtDireccion.getText().toString(),isRent,nombre,telefono,valor,fecha,arriendosAtrasados);
 
 
             }
@@ -146,20 +160,39 @@ public class AddPropiedadActivity extends AppCompatActivity{
         newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 
-    private void guardarData(String tag, String direccion, boolean isRent, String nombre, String telefono,String canon, String fecha){
+    private void showDatePickerDialog2() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                txtFechaPredial.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
+    }
+
+    private void guardarData(String tag,String fmi,String avaluo,String impuesto,String fechaImpuesto, String direccion, boolean isRent, String nombre, String telefono,String canon, String fecha,String pagosAtrasados){
 
         if(!tag.isEmpty() && !direccion.isEmpty() && !nombre.isEmpty() &&
-                !telefono.isEmpty() && !canon.isEmpty() && !fecha.isEmpty()){
+                !telefono.isEmpty() && !canon.isEmpty() && !fecha.isEmpty() && !avaluo.isEmpty() &&
+        !fmi.isEmpty() && !impuesto.isEmpty() && !fechaImpuesto.isEmpty() && !pagosAtrasados.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
             data.put("tipo","casa");
             data.put("direccion",direccion);
+            data.put("FMI",fmi);
+            data.put("avaluo",avaluo);
+            data.put("valor_predial",impuesto);
+            data.put("fecha_vencimiento_predial",fechaImpuesto);
             data.put("rentada",isRent);
             data.put("nombre",nombre);
             data.put("telefono",telefono);
             data.put("valor",canon);
             data.put("fecha",fecha);
+            data.put("arriendos_atrasados",pagosAtrasados);
 
 
             propiedades.child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -171,7 +204,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
                         Toast.makeText(AddPropiedadActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
                         Intent intent=new Intent(AddPropiedadActivity.this, ProfileMainActivity.class);
                         startActivity(intent);
-
+                        finish();
 
                     }else {
                         Toast.makeText(AddPropiedadActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();

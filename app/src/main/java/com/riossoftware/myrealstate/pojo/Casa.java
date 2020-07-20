@@ -2,8 +2,48 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Casa {
 
-    String direccion,fecha,nombre,tag,telefono,tipo,valor;
+    String direccion,fecha,nombre,tag,telefono,tipo,valor,FMI,valor_predial,fecha_vencimiento_predial,arriendos_atrasados,avaluo;
     boolean rentada;
+
+    public String getAvaluo() {
+        return avaluo;
+    }
+
+    public void setAvaluo(String avaluo) {
+        this.avaluo = avaluo;
+    }
+
+    public String getFMI() {
+        return FMI;
+    }
+
+    public void setFMI(String FMI) {
+        this.FMI = FMI;
+    }
+
+    public String getValor_predial() {
+        return valor_predial;
+    }
+
+    public void setValor_predial(String valor_predial) {
+        this.valor_predial = valor_predial;
+    }
+
+    public String getFecha_vencimiento_predial() {
+        return fecha_vencimiento_predial;
+    }
+
+    public void setFecha_vencimiento_predial(String fecha_vencimiento_predial) {
+        this.fecha_vencimiento_predial = fecha_vencimiento_predial;
+    }
+
+    public String getArriendos_atrasados() {
+        return arriendos_atrasados;
+    }
+
+    public void setArriendos_atrasados(String arriendos_atrasados) {
+        this.arriendos_atrasados = arriendos_atrasados;
+    }
 
     public String getDireccion() {
         return direccion;

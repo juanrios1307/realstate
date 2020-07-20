@@ -43,4 +43,13 @@
         android:focusable="false"
         android:clickable="true" />
 
+    <EditText
+        android:id="@+id/txtPagosAtrasados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="Arriendos Atrasados:"
+        android:inputType="number" />
+
 </LinearLayout>

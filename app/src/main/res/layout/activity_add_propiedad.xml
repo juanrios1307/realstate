@@ -15,94 +15,141 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <EditText
-        android:id="@+id/txtTag"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:fontFamily="@font/nunito_bold"
-        android:hint="Nombre Propiedad"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent"
+        android:layout_weight="8">
 
-    <EditText
-        android:id="@+id/txtAdress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:fontFamily="@font/nunito_bold"
-        android:hint="Dirección :"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/nunito_bold"
-        android:text="La propiedad esta arrendada?"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <RadioGroup
-            android:id="@+id/rgRent"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/rbSi"
-            android:clickable="true"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/rbSi"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/txtTag"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:ems="10"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Si" />
+                android:hint="Nombre Propiedad"
+                android:inputType="textPersonName" />
 
-            <RadioButton
-                android:id="@+id/rbNo"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/txtFMI"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:ems="10"
                 android:fontFamily="@font/nunito_bold"
-                android:text="No" />
-        </RadioGroup>
+                android:hint="Matricula Inmobiliaria"
+                android:inputType="textPersonName" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/txtAvaluo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:fontFamily="@font/nunito_bold"
+                android:hint="Avaluo: "
+                android:inputType="textPersonName" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/txtAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:fontFamily="@font/nunito_bold"
+                android:hint="Dirección :"
+                android:inputType="textPersonName" />
 
-        <include
-            android:id="@+id/no_rent"
-            layout="@layout/content_no_rent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
+            <EditText
+                android:id="@+id/txtFechaIP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:fontFamily="@font/nunito_bold"
+                android:hint="Fecha vencimiento predial:"
+                android:inputType="date" />
 
-        <include
-            android:id="@+id/rent"
-            layout="@layout/content_rent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
-    </RelativeLayout>
+            <EditText
+                android:id="@+id/txtImpuesto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/nunito_bold"
+                android:hint="Impuesto predial ultimo año ($) :"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="La propiedad esta arrendada?"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/rgRent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/rbSi"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Si" />
+
+                <RadioButton
+                    android:id="@+id/rbNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="No" />
+            </RadioGroup>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <include
+                    android:id="@+id/no_rent"
+                    layout="@layout/content_no_rent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
+
+                <include
+                    android:id="@+id/rent"
+                    layout="@layout/content_rent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorPrimaryDark"
         android:fontFamily="@font/nunito_bold"
         android:padding="15dp"

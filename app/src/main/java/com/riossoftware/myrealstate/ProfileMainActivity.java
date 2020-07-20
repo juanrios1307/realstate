@@ -34,17 +34,10 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.riossoftware.myrealstate.actions.AddPagoActivity;
-import com.riossoftware.myrealstate.actions.DatosActivity;
-import com.riossoftware.myrealstate.actions.HistoricoActivity;
-import com.riossoftware.myrealstate.actions.PagoTotalActivity;
-import com.riossoftware.myrealstate.actions.PagosAtrasadosActivity;
-import com.riossoftware.myrealstate.adds.AddGarantiaActivity;
-import com.riossoftware.myrealstate.adds.AddHipotecaActivity;
-import com.riossoftware.myrealstate.adds.AddPagareActivity;
-import com.riossoftware.myrealstate.adds.AddPropiedadActivity;
-import com.riossoftware.myrealstate.listView.CustomAdapter;
-import com.riossoftware.myrealstate.listView.Propiedad;
+
+import com.riossoftware.myrealstate.actions.*;
+import com.riossoftware.myrealstate.adds.*;
+import com.riossoftware.myrealstate.listView.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +55,7 @@ public class ProfileMainActivity extends AppCompatActivity {
     ArrayList<Propiedad> propers=new ArrayList<Propiedad>();
     Propiedad propiedadAux;
 
-
+    MenuItem pagoTotal,mantenimiento,gastos;
 
     String token="";
     FirebaseAuth auth;
@@ -103,10 +96,6 @@ public class ProfileMainActivity extends AppCompatActivity {
 
         declareAndSet();
         closeFABMenu();
-
-
-
-
 
     }
 
@@ -176,6 +165,9 @@ public class ProfileMainActivity extends AppCompatActivity {
         android.view.MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.menu_listview, menu);
+
+
+
     }
 
     @Override
@@ -187,35 +179,30 @@ public class ProfileMainActivity extends AppCompatActivity {
 
 
         switch (item.getItemId()) {
-            case R.id.Pago:
-                intent=new Intent(ProfileMainActivity.this, AddPagoActivity.class);
-                intent.putExtra("tag",tag);
-                startActivity(intent);
-                return true;
-            case R.id.Historico:
-                intent=new Intent(ProfileMainActivity.this, HistoricoActivity.class);
-                intent.putExtra("tag",tag);
-                startActivity(intent);
-                return true;
             case R.id.Datos:
                 intent=new Intent(ProfileMainActivity.this, DatosActivity.class);
                 intent.putExtra("tag",tag);
                 startActivity(intent);
+
+                return true;
+            case R.id.Pago:
+                intent=new Intent(ProfileMainActivity.this, AddPagoActivity.class);
+                intent.putExtra("tag",tag);
+                startActivity(intent);
+
                 return true;
             case R.id.Atraso:
                 intent=new Intent(ProfileMainActivity.this, PagosAtrasadosActivity.class);
                 intent.putExtra("tag",tag);
                 startActivity(intent);
-                return true;
-            case R.id.PagoTotal:
-                if(!pAux.getTipo().equals("casa")){
-                    intent=new Intent(ProfileMainActivity.this, PagoTotalActivity.class);
-                    intent.putExtra("tag",tag);
-                    startActivity(intent);
-                    return true;
-                }else{
 
-                }
+                return true;
+            case R.id.ProcesoJudicial:
+                intent=new Intent(ProfileMainActivity.this, ProcesoJudicialActivity.class);
+                intent.putExtra("tag",tag);
+                startActivity(intent);
+
+                return true;
             default:
                 return super.onContextItemSelected((android.view.MenuItem) item);
         }
@@ -258,7 +245,35 @@ public class ProfileMainActivity extends AppCompatActivity {
 
                                 Propiedad proper = ds.getValue(Propiedad.class);
                                 propers.add(proper);
+
+                                if(proper.getTipo().equals("hipoteca")){
+                                    db.child("PROPIEDADES").child(proper.getTag()).child("PAGARES").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            System.out.println("HOLA: "+snapshot);
+                                            if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+
+                                                for (DataSnapshot ds : snapshot.getChildren()) {
+                                                    Propiedad proper1 = ds.getValue(Propiedad.class);
+                                                    System.out.println("HOLA 2: "+proper1);
+                                                    propers.add(proper1);
+                                                    System.out.println("HOLA 3: "+propers);
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Toast.makeText(ProfileMainActivity.this, "ERROR " + error.getMessage(), Toast.LENGTH_LONG).show();
+
+                                        }
+                                    });
+
+                                    System.out.println("HOLA 4"+propers);
+                                }
+
                             }
+
 
 
                             CustomAdapter adapter = new CustomAdapter(ProfileMainActivity.this, propers);
@@ -316,6 +331,8 @@ public class ProfileMainActivity extends AppCompatActivity {
         txtPagare =(TextView)findViewById(R.id.txtPagare);
         txtGarantia=(TextView)findViewById(R.id.txtGarantia);
 
+
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -342,8 +359,8 @@ public class ProfileMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileMainActivity.this, AddHipotecaActivity.class);
-
                 startActivity(intent);
+
             }
         });
 
@@ -352,6 +369,7 @@ public class ProfileMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileMainActivity.this, AddPagareActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -360,6 +378,7 @@ public class ProfileMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileMainActivity.this, AddGarantiaActivity.class);
                 startActivity(intent);
+
             }
         });
     }

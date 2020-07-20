@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class AddGarantiaActivity extends AppCompatActivity {
 
-    TextView txtTag,txtValor,txtTipo,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono,txtInteres;
+    TextView txtTag,txtValor,txtTipo,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono,txtInteres,txtPagosAtrasados;
     Button btnGuardar;
 
     FirebaseAuth auth;
@@ -64,6 +64,7 @@ public class AddGarantiaActivity extends AppCompatActivity {
         txtTiempo=(TextView)findViewById(R.id.txtTiempo);
         txtNombre=(TextView)findViewById(R.id.txtName);
         txtTelefono=(TextView) findViewById(R.id.txtPhone);
+        txtPagosAtrasados=(TextView) findViewById(R.id.txtPagosAtrasados);
 
         btnGuardar=(Button) findViewById(R.id.btnAdd);
 
@@ -87,10 +88,8 @@ public class AddGarantiaActivity extends AppCompatActivity {
 
                 guardarData(txtTag.getText().toString(),txtTipo.getText().toString(),txtValor.getText().toString(),
                         txtInteres.getText().toString(), txtFecha.getText().toString(), txtFechaVenc.getText().toString(),
-                        txtTiempo.getText().toString(),txtNombre.getText().toString(),txtTelefono.getText().toString());
-                Intent intent=new Intent(AddGarantiaActivity.this, ProfileMainActivity.class);
-                startActivity(intent);
-                finish();
+                        txtTiempo.getText().toString(),txtNombre.getText().toString(),txtTelefono.getText().toString(),txtPagosAtrasados.getText().toString());
+
             }
         });
 
@@ -125,9 +124,9 @@ public class AddGarantiaActivity extends AppCompatActivity {
     }
 
     private void guardarData(String tag,String tipo, String interes,String valor, String fecha,
-                             String fechaVenc,String tiempo,String nombre, String telefono){
+                             String fechaVenc,String tiempo,String nombre, String telefono,String pagosAtrasados){
 
-        if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() &&
+        if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() && !pagosAtrasados.isEmpty() &&
                 !fechaVenc.isEmpty() && !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
@@ -141,6 +140,7 @@ public class AddGarantiaActivity extends AppCompatActivity {
             data.put("tiempo",tiempo+" años");
             data.put("nombre",nombre);
             data.put("telefono",telefono);
+            data.put("pagos_atrasados",pagosAtrasados);
 
 
 
@@ -151,6 +151,9 @@ public class AddGarantiaActivity extends AppCompatActivity {
                     if(task.isSuccessful()) {
 
                         Toast.makeText(AddGarantiaActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(AddGarantiaActivity.this, ProfileMainActivity.class);
+                        startActivity(intent);
+                        finish();
 
                     }else {
                         Toast.makeText(AddGarantiaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();

@@ -31,12 +31,12 @@ import java.util.Map;
 
 public class AddPagareActivity extends AppCompatActivity {
 
-    TextView txtTag,txtValor,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono,txtInteres;
+    TextView txtTag,txtValor,txtFecha,txtFechaVenc,txtTiempo,txtNombre,txtTelefono,txtInteres,txtPagosAtrasados;
     Button btnGuardar;
 
     FirebaseAuth auth;
     DatabaseReference db,propiedades;
-    String id;
+    String id,tagHipoteca;
 
     AlertDialog.Builder builder;
 
@@ -54,6 +54,10 @@ public class AddPagareActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference("Users").child(id);
         propiedades=db.child("PROPIEDADES");
 
+
+        tagHipoteca=getIntent().getStringExtra("tag");
+
+
         txtTag=(TextView) findViewById(R.id.txtTag);
         txtValor=(TextView)findViewById(R.id.txtValor);
         txtInteres=(TextView)findViewById(R.id.txtInteres);
@@ -62,6 +66,7 @@ public class AddPagareActivity extends AppCompatActivity {
         txtTiempo=(TextView)findViewById(R.id.txtTiempo);
         txtNombre=(TextView)findViewById(R.id.txtName);
         txtTelefono=(TextView) findViewById(R.id.txtPhone);
+        txtPagosAtrasados=(TextView) findViewById(R.id.txtPagosAtrasados);
 
         btnGuardar=(Button) findViewById(R.id.btnAdd);
 
@@ -79,6 +84,11 @@ public class AddPagareActivity extends AppCompatActivity {
             }
         });
 
+        if(!tagHipoteca.isEmpty() || tagHipoteca!=null){
+            txtTag.setText(tagHipoteca);
+            txtTag.setFocusable(false);
+        }
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,10 +96,8 @@ public class AddPagareActivity extends AppCompatActivity {
                 guardarData(txtTag.getText().toString(),txtValor.getText().toString(), txtInteres.getText().toString(),
                         txtFecha.getText().toString(),
                         txtFechaVenc.getText().toString(),txtTiempo.getText().toString(),
-                        txtNombre.getText().toString(),txtTelefono.getText().toString());
-                Intent intent=new Intent(AddPagareActivity.this, ProfileMainActivity.class);
-                startActivity(intent);
-                finish();
+                        txtNombre.getText().toString(),txtTelefono.getText().toString(),txtPagosAtrasados.getText().toString(),tagHipoteca.isEmpty());
+
             }
         });
 
@@ -123,10 +131,10 @@ public class AddPagareActivity extends AppCompatActivity {
     }
 
     private void guardarData(String tag, String valor,String interes, String fecha, String fechaVenc,
-                             String tiempo,String nombre, String telefono){
+                             String tiempo,String nombre, String telefono,String pagosAtrasados,boolean intent){
 
         if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() && !fechaVenc.isEmpty() &&
-                !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty()){
+                !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty() && !pagosAtrasados.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
@@ -138,24 +146,47 @@ public class AddPagareActivity extends AppCompatActivity {
             data.put("tiempo",tiempo+" años");
             data.put("nombre",nombre);
             data.put("telefono",telefono);
+            data.put("pagos_atrasados",pagosAtrasados);
 
+            if(intent) {
+                propiedades.child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
 
+                        if (task.isSuccessful()) {
 
-            propiedades.child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(AddPagareActivity.this, "Datos subidos", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(AddPagareActivity.this, ProfileMainActivity.class);
+                            startActivity(intent);
+                            finish();
 
-                    if(task.isSuccessful()) {
+                        } else {
+                            Toast.makeText(AddPagareActivity.this, "Los datos NO puedieron ser subidos", Toast.LENGTH_LONG).show();
+                        }
 
-                        Toast.makeText(AddPagareActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
-
-                    }else {
-                        Toast.makeText(AddPagareActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
+                });
+            }else{
+                data.put("hipoteca",tag);
 
-                }
-            });
+                propiedades.child(tagHipoteca).child("PAGARES").child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
 
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(AddPagareActivity.this, "Datos subidos", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(AddPagareActivity.this, ProfileMainActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            Toast.makeText(AddPagareActivity.this, "Los datos NO puedieron ser subidos", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+            }
         }else{
             Toast.makeText(AddPagareActivity.this,"Por favor complete todos los datos",Toast.LENGTH_LONG).show();
         }

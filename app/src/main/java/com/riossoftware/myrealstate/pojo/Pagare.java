@@ -2,7 +2,23 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Pagare {
 
-    String fechaprestamo,fechavencimiento,interes,nombre,tag,telefono,tiempo,tipo,valor;
+    String fechaprestamo,fechavencimiento,interes,nombre,tag,telefono,tiempo,tipo,valor,pagos_atrasados,hipoteca;
+
+    public String getHipoteca() {
+        return hipoteca;
+    }
+
+    public void setHipoteca(String hipoteca) {
+        this.hipoteca = hipoteca;
+    }
+
+    public String getPagos_atrasados() {
+        return pagos_atrasados;
+    }
+
+    public void setPagos_atrasados(String pagos_atrasados) {
+        this.pagos_atrasados = pagos_atrasados;
+    }
 
     public String getFechaprestamo() {
         return fechaprestamo;

@@ -31,8 +31,8 @@ import java.util.Map;
 
 public class AddHipotecaActivity extends AppCompatActivity {
 
-    TextView txtTag,txtValor,txtDireccion,txtAvaluo,txtFecha,txtTiempo,txtNombre,txtTelefono,txtInteres;
-    Button btnGuardar;
+    TextView txtTag,txtValor,txtDireccion,txtAvaluo,txtFecha,txtTiempo,txtNombre,txtTelefono,txtInteres,txtPagosAtrasados,txtFechaVencimiento;
+    Button btnGuardar,btnAddPagares;
 
     FirebaseAuth auth;
     DatabaseReference db,propiedades;
@@ -63,13 +63,23 @@ public class AddHipotecaActivity extends AppCompatActivity {
         txtTiempo=(TextView)findViewById(R.id.txtTiempo);
         txtNombre=(TextView)findViewById(R.id.txtName);
         txtTelefono=(TextView) findViewById(R.id.txtPhone);
+        txtPagosAtrasados=(TextView)findViewById(R.id.txtPagosAtrasados);
+        txtFechaVencimiento=(TextView) findViewById(R.id.txtFechaVencimiento);
 
         btnGuardar=(Button) findViewById(R.id.btnAdd);
+        btnAddPagares=(Button) findViewById(R.id.btnAddPagares);
+
 
         txtFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
+            }
+        });
+        txtFechaVencimiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog2();
             }
         });
 
@@ -78,12 +88,22 @@ public class AddHipotecaActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 guardarData(txtTag.getText().toString(),txtValor.getText().toString(),txtInteres.getText().toString()
-                        ,txtDireccion.getText().toString(),
-                        txtAvaluo.getText().toString(),txtFecha.getText().toString(),txtTiempo.getText().toString(),
-                        txtNombre.getText().toString(),txtTelefono.getText().toString());
-                Intent intent=new Intent(AddHipotecaActivity.this, ProfileMainActivity.class);
-                startActivity(intent);
-                finish();
+                        ,txtDireccion.getText().toString(),txtAvaluo.getText().toString(),
+                        txtFecha.getText().toString(),txtFechaVencimiento.getText().toString(),
+                        txtTiempo.getText().toString(),txtNombre.getText().toString(),
+                        txtTelefono.getText().toString(),txtPagosAtrasados.getText().toString(),true);
+
+            }
+        });
+
+        btnAddPagares.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guardarData(txtTag.getText().toString(),txtValor.getText().toString(),txtInteres.getText().toString()
+                        ,txtDireccion.getText().toString(),txtAvaluo.getText().toString(),
+                        txtFecha.getText().toString(),txtFechaVencimiento.getText().toString(),
+                        txtTiempo.getText().toString(),txtNombre.getText().toString(),
+                        txtTelefono.getText().toString(),txtPagosAtrasados.getText().toString(),false);
             }
         });
 
@@ -103,11 +123,25 @@ public class AddHipotecaActivity extends AppCompatActivity {
         newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 
-    private void guardarData(String tag, String valor, String interes ,String direccion, String avaluo, String fecha,
-                             String tiempo,String nombre, String telefono){
+    private void showDatePickerDialog2() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                txtFechaVencimiento.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
+    }
+
+    private void guardarData(final String tag, String valor, String interes , String direccion, String avaluo, String fecha, String fechaVenc,
+                             String tiempo, String nombre, String telefono, String pagosAtrasados, final boolean intent){
 
         if(!tag.isEmpty() && !valor.isEmpty() && !interes.isEmpty() && !direccion.isEmpty() && !avaluo.isEmpty()
-                && !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty()){
+                && !fecha.isEmpty() && !tiempo.isEmpty() && !nombre.isEmpty() && !telefono.isEmpty() &&
+        !fechaVenc.isEmpty() && !pagosAtrasados.isEmpty()){
             Map<String,Object> data=new HashMap<>();
 
             data.put("tag",tag);
@@ -117,9 +151,11 @@ public class AddHipotecaActivity extends AppCompatActivity {
             data.put("direccion",direccion);
             data.put("avaluo",avaluo);
             data.put("fecha",fecha);
+            data.put("fecha_vencimiento",fechaVenc);
             data.put("tiempo",tiempo+" años");
             data.put("nombre",nombre);
             data.put("telefono",telefono);
+            data.put("pagos_atrasados",pagosAtrasados);
 
 
 
@@ -128,8 +164,20 @@ public class AddHipotecaActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
 
                     if(task.isSuccessful()) {
-
                         Toast.makeText(AddHipotecaActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
+
+                        if(intent){
+                            Intent intent=new Intent(AddHipotecaActivity.this, ProfileMainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent=new Intent(AddHipotecaActivity.this, AddPagareActivity.class);
+                            intent.putExtra("tag",tag);
+                            startActivity(intent);
+                            finish();
+                        }
+
+
 
                     }else {
                         Toast.makeText(AddHipotecaActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();

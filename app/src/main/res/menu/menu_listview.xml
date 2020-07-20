@@ -3,21 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/Datos"
+        android:icon="@android:drawable/ic_input_get"
+        android:title="Ver datos"
+        app:showAsAction="never" />
+    <item
         android:title="Agregar Pago"
         android:icon="@android:drawable/ic_input_get"
         android:id="@+id/Pago"
-        app:showAsAction="never"/>
-
-    <item
-        android:title="Ver Historico"
-        android:icon="@android:drawable/ic_input_get"
-        android:id="@+id/Historico"
-        app:showAsAction="never"/>
-
-    <item
-        android:title="Ver datos"
-        android:icon="@android:drawable/ic_input_get"
-        android:id="@+id/Datos"
         app:showAsAction="never"/>
 
     <item
@@ -26,9 +19,9 @@
         android:id="@+id/Atraso"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/PagoTotal"
+        android:id="@+id/ProcesoJudicial"
         android:icon="@android:drawable/ic_input_get"
-        android:title="Pago Total"
+        android:title="Proceso judicial"
         app:showAsAction="never" />
 
 

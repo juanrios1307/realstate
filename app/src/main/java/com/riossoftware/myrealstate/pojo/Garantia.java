@@ -2,7 +2,15 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Garantia {
 
-    String fechaprestamo,fechavencimiento,interes,nombre,tag,telefono,tiempo,tipo,tipoGarantia,valor;
+    String fechaprestamo,fechavencimiento,interes,nombre,tag,telefono,tiempo,tipo,tipoGarantia,valor,pagos_atrasados;
+
+    public String getPagos_atrasados() {
+        return pagos_atrasados;
+    }
+
+    public void setPagos_atrasados(String pagos_atrasados) {
+        this.pagos_atrasados = pagos_atrasados;
+    }
 
     public String getFechaprestamo() {
         return fechaprestamo;

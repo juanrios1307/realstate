@@ -32,12 +32,13 @@ import com.riossoftware.myrealstate.pojo.Pagare;
 
 public class DatosActivity extends AppCompatActivity {
 
-    TextView txtT,ltipo,ltag,l1,l2,l3,l4,l5,l6,l7,l8;
-    Button btnHistory;
+    TextView txtT,ltipo,ltag,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
+    Button btnAddPago,btnPagosAtrasados,btnHistory,btnGasto,btnProcesoJudicial,btnAux;
 
     FirebaseAuth auth;
     DatabaseReference db,propiedades;
     String id,tag;
+    boolean tipo;
 
     AlertDialog.Builder builder;
 
@@ -58,33 +59,12 @@ public class DatosActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference("Users").child(id);
         propiedades=db.child("PROPIEDADES");
 
-        txtT=(TextView)findViewById(R.id.txtData);
-        ltag=(TextView)findViewById(R.id.txtTag);
-        ltipo=(TextView)findViewById(R.id.txtTipo);
-        ltag=(TextView)findViewById(R.id.txtTag);
-        l1=(TextView)findViewById(R.id.txt1);
-        l2=(TextView)findViewById(R.id.txt2);
-        l3=(TextView)findViewById(R.id.txt3);
-        l4=(TextView)findViewById(R.id.txt4);
-        l5=(TextView)findViewById(R.id.txt5);
-        l6=(TextView)findViewById(R.id.txt6);
-        l7=(TextView)findViewById(R.id.txt7);
-        l8=(TextView)findViewById(R.id.txt8);
-        btnHistory=(Button) findViewById(R.id.btnHistory);
-
+        declareAndSet();
         getData();
 
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(DatosActivity.this,HistoricoActivity.class);
-                i.putExtra("tag",tag);
-                startActivity(i);
-                //finish();
-            }
-        });
-
     }
+
+
 
     public void getData(){
 
@@ -94,10 +74,18 @@ public class DatosActivity extends AppCompatActivity {
                 GenericTypeIndicator<Propiedad> user = new GenericTypeIndicator<Propiedad>() {};
                 Propiedad propiedad = snapshot.getValue(user);
 
+                tipo=propiedad.getTipo().equals("casa")?true:false;
+
+                if(tipo)
+                    btnAux.setText("Mantenimientos");
+                else
+                    btnAux.setText("Pago Total");
+
 
                 txtT.setText(propiedad.getTag());
                 ltag.setText("Tag: "+propiedad.getTag());
                 ltipo.setText("Tipo: "+propiedad.getTipo());
+
 
                 switch (propiedad.getTipo()){
                     case "casa":
@@ -130,27 +118,124 @@ public class DatosActivity extends AppCompatActivity {
         });
     }
 
+    public void declareAndSet(){
+        txtT=(TextView)findViewById(R.id.txtData);
+        ltag=(TextView)findViewById(R.id.txtTag);
+        ltipo=(TextView)findViewById(R.id.txtTipo);
+        ltag=(TextView)findViewById(R.id.txtTag);
+        l1=(TextView)findViewById(R.id.txt1);
+        l2=(TextView)findViewById(R.id.txt2);
+        l3=(TextView)findViewById(R.id.txt3);
+        l4=(TextView)findViewById(R.id.txt4);
+        l5=(TextView)findViewById(R.id.txt5);
+        l6=(TextView)findViewById(R.id.txt6);
+        l7=(TextView)findViewById(R.id.txt7);
+        l8=(TextView)findViewById(R.id.txt8);
+        l9=(TextView)findViewById(R.id.txt9);
+        l10=(TextView)findViewById(R.id.txt10);
+
+        btnAddPago=(Button) findViewById(R.id.btnAddPago);
+        btnPagosAtrasados=(Button) findViewById(R.id.btnPagosAtrasados);
+        btnHistory=(Button) findViewById(R.id.btnHistory);
+        btnGasto=(Button) findViewById(R.id.btnAddGasto);
+        btnProcesoJudicial=(Button) findViewById(R.id.btnProcesoJudicial);
+        btnAux=(Button) findViewById(R.id.btnAux);
+
+
+        btnAddPago.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,AddPagoActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
+
+        btnPagosAtrasados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,PagosAtrasadosActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,HistoricoActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
+
+        btnGasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,GastoActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
+
+        btnProcesoJudicial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DatosActivity.this,ProcesoJudicialActivity.class);
+                i.putExtra("tag",tag);
+                startActivity(i);
+                //finish();
+            }
+        });
+
+        btnAux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tipo){
+                    System.out.println("true");
+                    Intent i=new Intent(DatosActivity.this,MantenimientosActivity.class);
+                    i.putExtra("tag",tag);
+                    startActivity(i);
+                }else{
+                    System.out.println("true 1");
+                    Intent i=new Intent(DatosActivity.this,PagoTotalActivity.class);
+                    i.putExtra("tag",tag);
+                    startActivity(i);
+                }
+
+            }
+        });
+    }
+
     private void setCasa(Casa c){
-        l7.setVisibility(View.INVISIBLE);
-        l8.setVisibility(View.INVISIBLE);
 
         String rent;
         if(c.isRentada()){
             rent="Rentada";
-            l5.setVisibility(View.VISIBLE);
-            l6.setVisibility(View.VISIBLE);
-            l5.setText("Nombre: "+c.getNombre());
-            l6.setText("Telefono: "+c.getTelefono());
+            l8.setVisibility(View.VISIBLE);
+            l9.setVisibility(View.VISIBLE);
+            l10.setVisibility(View.VISIBLE);
+            l8.setText("Nombre: "+c.getNombre());
+            l9.setText("Telefono: "+c.getTelefono());
+            l10.setText(Integer.parseInt(c.getArriendos_atrasados())!=0?"Pagos Atrasados: "+c.getArriendos_atrasados():"Se encuentra al dia con el canon");
         }else{
             rent="No rentada";
-            l5.setVisibility(View.INVISIBLE);
-            l6.setVisibility(View.INVISIBLE);
+            l8.setVisibility(View.INVISIBLE);
+            l9.setVisibility(View.INVISIBLE);
+            l10.setVisibility(View.INVISIBLE);
         }
 
         l1.setText("Dirección: "+c.getDireccion());
-        l2.setText("Fecha arrendamiento: "+c.getFecha());
-        l3.setText(rent);
-        l4.setText("Canon: $"+c.getValor());
+        l2.setText("FMI: "+c.getFMI());
+        l3.setText("Avaluo: "+c.getAvaluo());
+        l4.setText("Predial ultimo año: "+c.getValor_predial());
+        l5.setText("Fecha vencimiento predial: "+c.getFecha_vencimiento_predial());
+        l6.setText(rent);
+        l7.setText("Canon : "+c.getValor());
 
     }
 
@@ -158,11 +243,13 @@ public class DatosActivity extends AppCompatActivity {
         l1.setText("Avaluo propiedad: "+h.getAvaluo());
         l2.setText("Dirección: "+h.getDireccion());
         l3.setText("Fecha prestamo: "+h.getFecha());
-        l4.setText("Interes: $"+h.getInteres());
-        l5.setText("Nombre: "+h.getNombre());
-        l6.setText("Telefono: "+h.getTelefono());
-        l7.setText("Tiempo prestamo: "+h.getTiempo());
-        l8.setText("Valor prestamo: "+h.getValor());
+        l4.setText("Fecha vencimiento: "+h.getFecha_vencimiento());
+        l5.setText("Interes: $"+h.getInteres());
+        l6.setText("Nombre: "+h.getNombre());
+        l7.setText("Telefono: "+h.getTelefono());
+        l8.setText("Tiempo prestamo: "+h.getTiempo());
+        l9.setText("Valor prestamo: "+h.getValor());
+        l10.setText(Integer.parseInt(h.getPagos_atrasados())!=0?"Pagos Atrasados: "+h.getPagos_atrasados():"Se encuentra al dia con el interes");
     }
 
     private void setPagare(Pagare p){
@@ -173,7 +260,14 @@ public class DatosActivity extends AppCompatActivity {
         l5.setText("Telefono: "+p.getTelefono());
         l6.setText("Tiempo prestamo: "+p.getTiempo());
         l7.setText("Valor prestamo: "+p.getValor());
-        l8.setVisibility(View.INVISIBLE);
+        l7.setText("Valor prestamo: "+p.getValor());
+        l8.setText(Integer.parseInt(p.getPagos_atrasados())!=0?"Pagos Atrasados: "+p.getPagos_atrasados():"Se encuentra al dia con el interes");
+        if(p.getHipoteca() !=null){
+            l9.setText("Hipoteca: "+p.getHipoteca());
+        }else{
+            l9.setVisibility(View.INVISIBLE);
+        }
+        l10.setVisibility(View.INVISIBLE);
     }
 
     private  void setGarantia(Garantia g){
@@ -185,6 +279,8 @@ public class DatosActivity extends AppCompatActivity {
         l6.setText("Tiempo prestamo: "+g.getTiempo());
         l7.setText("Tipo de garantia: "+g.getTipoGarantia());
         l8.setText("Valor prestamo: "+g.getValor());
+        l9.setText(Integer.parseInt(g.getPagos_atrasados())!=0?"Pagos Atrasados: "+g.getPagos_atrasados():"Se encuentra al dia con el interes");
+        l10.setVisibility(View.INVISIBLE);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

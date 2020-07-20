@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.riossoftware.myrealstate.LoginActivity;
 import com.riossoftware.myrealstate.ProfileMainActivity;
 import com.riossoftware.myrealstate.R;
+import com.riossoftware.myrealstate.actions.DatosActivity;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(c).inflate(R.layout.list_item, parent, false);
         }
@@ -67,6 +68,19 @@ public class CustomAdapter extends BaseAdapter {
         tipo.setText(s.getTipo());
 
         //ONITEMCLICK
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(c, DatosActivity.class);
+                intent.putExtra("tag",s.getTag());
+
+                c.startActivity(intent);
+
+            }
+        });
+
+        convertView.setLongClickable(true);
+
 
 
         return convertView;
