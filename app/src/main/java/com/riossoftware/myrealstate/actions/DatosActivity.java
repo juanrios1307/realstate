@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.riossoftware.myrealstate.LoginActivity;
-import com.riossoftware.myrealstate.ProfileMainActivity;
 import com.riossoftware.myrealstate.R;
 import com.riossoftware.myrealstate.listView.Propiedad;
 import com.riossoftware.myrealstate.pojo.Casa;
@@ -230,7 +229,7 @@ public class DatosActivity extends AppCompatActivity {
         }
 
         l1.setText("Dirección: "+c.getDireccion());
-        l2.setText("FMI: "+c.getFMI());
+        l2.setText("FMI: "+c.getFmi());
         l3.setText("Avaluo: "+c.getAvaluo());
         l4.setText("Predial ultimo año: "+c.getValor_predial());
         l5.setText("Fecha vencimiento predial: "+c.getFecha_vencimiento_predial());

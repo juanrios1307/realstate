@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="center_horizontal"
+        android:text="No hay un proceso judicial abierto para esta propiedad"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnAddProcess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/nunito_bold"
+        android:padding="10dp"
+        android:text="Abrir proceso"
+        android:textColor="@android:color/white" />
+</LinearLayout>

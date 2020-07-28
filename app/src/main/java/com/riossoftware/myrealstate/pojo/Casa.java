@@ -2,7 +2,7 @@ package com.riossoftware.myrealstate.pojo;
 
 public class Casa {
 
-    String direccion,fecha,nombre,tag,telefono,tipo,valor,FMI,valor_predial,fecha_vencimiento_predial,arriendos_atrasados,avaluo;
+    String direccion,fecha,nombre,tag,telefono,tipo,valor, fmi,valor_predial,fecha_vencimiento_predial,arriendos_atrasados,avaluo;
     boolean rentada;
 
     public String getAvaluo() {
@@ -13,12 +13,12 @@ public class Casa {
         this.avaluo = avaluo;
     }
 
-    public String getFMI() {
-        return FMI;
+    public String getFmi() {
+        return fmi;
     }
 
-    public void setFMI(String FMI) {
-        this.FMI = FMI;
+    public void setFmi(String fmi) {
+        this.fmi = fmi;
     }
 
     public String getValor_predial() {

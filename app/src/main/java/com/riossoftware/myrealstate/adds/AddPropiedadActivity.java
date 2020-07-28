@@ -183,7 +183,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
             data.put("tag",tag);
             data.put("tipo","casa");
             data.put("direccion",direccion);
-            data.put("FMI",fmi);
+            data.put("fmi",fmi);
             data.put("avaluo",avaluo);
             data.put("valor_predial",impuesto);
             data.put("fecha_vencimiento_predial",fechaImpuesto);
