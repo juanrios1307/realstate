@@ -110,6 +110,8 @@ public class ProcesoJudicialActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createProcess.setVisibility(View.VISIBLE);
+                openProcess.setVisibility(View.INVISIBLE);
+                noProcess.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -166,6 +168,7 @@ public class ProcesoJudicialActivity extends AppCompatActivity {
 
                         Toast.makeText(ProcesoJudicialActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
                         createProcess.setVisibility(View.INVISIBLE);
+                        openProcess.setVisibility(View.VISIBLE);
                     }else {
                         Toast.makeText(ProcesoJudicialActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }

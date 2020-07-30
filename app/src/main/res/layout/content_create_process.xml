@@ -54,7 +54,7 @@
         android:ems="10"
         android:fontFamily="@font/nunito_bold"
         android:hint="Cedula demandado"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/etTelefono"
@@ -64,7 +64,7 @@
         android:ems="10"
         android:fontFamily="@font/nunito_bold"
         android:hint="Telefono"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/etDemandante"

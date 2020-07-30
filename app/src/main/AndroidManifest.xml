@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name=".actions.GastoActivity"
+        <activity android:name=".actions.AddGastoActivity"></activity>
+        <activity
+            android:name=".actions.GastoActivity"
             android:label="Agregar Gasto"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -18,7 +19,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.MantenimientosActivity"
             android:label="Agregar Mantenimiento"
@@ -28,8 +28,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
-        <activity android:name=".actions.ProcesoJudicialActivity"
+        <activity
+            android:name=".actions.ProcesoJudicialActivity"
             android:label="Proceso judicial"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,7 +37,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.PagoTotalActivity"
             android:label="Agregar Gasto"
@@ -47,7 +46,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.PagosAtrasadosActivity"
             android:label="Pagos Atrasados"
@@ -57,7 +55,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.HistoricoActivity"
             android:label="Pagos Historico"
@@ -67,7 +64,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.AddPagoActivity"
             android:label="Agregar Pago"
@@ -77,7 +73,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.actions.DatosActivity" />
         </activity>
-
         <activity
             android:name=".actions.DatosActivity"
             android:label="Datos"
@@ -87,45 +82,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.ProfileMainActivity" />
         </activity>
-
-
         <activity
             android:name=".adds.AddGarantiaActivity"
             android:label="Agregar Garantia"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".adds.AddPagareActivity"
             android:label="Agregar Pagaré"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.ProfileMainActivity" />
         </activity>
-
         <activity
             android:name=".adds.AddHipotecaActivity"
             android:label="Agregar Hipoteca"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.ProfileMainActivity" />
         </activity>
-
         <activity
             android:name=".adds.AddPropiedadActivity"
             android:label="Agregar Propiedad"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.ProfileMainActivity" />
         </activity>
-
-
         <activity
             android:name=".SinginActivity"
             android:label="Sign Up"
@@ -135,18 +123,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.riossoftware.myrealstate.LoginActivity" />
         </activity>
-
-
         <activity
             android:name=".ProfileMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

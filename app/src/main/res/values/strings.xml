@@ -14,7 +14,9 @@
     <string name="title_activity_login">Login</string>
     <string name="welcome_messages">Hola, %1$s</string>
     <string name="add_pay">Agregar pago para, %1$s</string>
+    <string name="add_gasto">Agregar gasto para, %1$s</string>
     <string name="historic_pays">Historico de pagos, %1$s</string>
+    <string name="historico_gastos">Historico de Gastos, %1$s</string>
 
     <string-array name="lugar">
         <item>Efectivo</item>

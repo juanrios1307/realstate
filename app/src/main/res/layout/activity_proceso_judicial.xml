@@ -33,24 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible" />
-    </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <include
+            android:id="@+id/create_process"
+            layout="@layout/content_create_process"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <include
-                android:id="@+id/create_process"
-                layout="@layout/content_create_process"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="invisible" />
-        </LinearLayout>
-    </ScrollView>
+            android:visibility="invisible" />
+    </RelativeLayout>
 
 </LinearLayout>

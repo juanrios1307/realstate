@@ -132,10 +132,10 @@ public class AddPropiedadActivity extends AppCompatActivity{
                     arriendosAtrasados=txtArriendosAtrasados.getText().toString();
                 }else{
                     nombre="No arrendada";
-                    telefono="";
-                    fecha=null;
+                    telefono="-";
+                    fecha="-";
                     valor=txtCanonP.getText().toString();
-                    arriendosAtrasados="" ;
+                    arriendosAtrasados="-" ;
                 }
                 guardarData(txtTag.getText().toString(),txtFMI.getText().toString(),txtAvaluo.getText().toString(),txtPredial.getText().toString(),txtFechaPredial.getText().toString()
                         ,txtDireccion.getText().toString(),isRent,nombre,telefono,valor,fecha,arriendosAtrasados);
@@ -145,7 +145,6 @@ public class AddPropiedadActivity extends AppCompatActivity{
         });
 
     }
-
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -195,7 +194,7 @@ public class AddPropiedadActivity extends AppCompatActivity{
             data.put("arriendos_atrasados",pagosAtrasados);
 
 
-            propiedades.child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            propiedades.child(tag).child("DATA").setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 

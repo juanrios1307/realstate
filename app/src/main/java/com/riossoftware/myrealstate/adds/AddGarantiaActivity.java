@@ -144,7 +144,7 @@ public class AddGarantiaActivity extends AppCompatActivity {
 
 
 
-            propiedades.child(tag).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            propiedades.child(tag).child("DATA").setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 

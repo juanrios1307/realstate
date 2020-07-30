@@ -67,7 +67,7 @@ public class DatosActivity extends AppCompatActivity {
 
     public void getData(){
 
-        propiedades.child(tag).addValueEventListener(new ValueEventListener() {
+        propiedades.child(tag).child("DATA").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 GenericTypeIndicator<Propiedad> user = new GenericTypeIndicator<Propiedad>() {};

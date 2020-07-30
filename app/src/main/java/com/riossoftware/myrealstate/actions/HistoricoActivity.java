@@ -112,7 +112,7 @@ public class HistoricoActivity extends AppCompatActivity {
                                 Pago pago = ds.getValue(Pago.class);
                                 pagos.add(pago);
                             }
-                            System.out.println("props adapter: "+pagos);
+
 
                             CustomAdapterHistory adapter = new CustomAdapterHistory(HistoricoActivity.this, pagos);
                             listView.setAdapter(adapter);

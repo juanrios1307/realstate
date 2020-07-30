@@ -242,11 +242,12 @@ public class ProfileMainActivity extends AppCompatActivity {
                         propers.clear();
                         if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                                Propiedad proper = ds.getValue(Propiedad.class);
+                                Propiedad proper = ds.child("DATA").getValue(Propiedad.class);
                                 propers.add(proper);
 
-                                if(proper.getTipo().equals("hipoteca")){
+                            }
+
+                              /*  if(proper.getTipo().equals("hipoteca")){
                                     db.child("PROPIEDADES").child(proper.getTag()).child("PAGARES").addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -270,9 +271,9 @@ public class ProfileMainActivity extends AppCompatActivity {
                                     });
 
                                     System.out.println("HOLA 4"+propers);
-                                }
+                                }*/
 
-                            }
+
 
 
 

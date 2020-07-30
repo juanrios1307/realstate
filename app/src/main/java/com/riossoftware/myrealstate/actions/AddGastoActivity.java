@@ -12,54 +12,40 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
 import com.riossoftware.myrealstate.LoginActivity;
-import com.riossoftware.myrealstate.ProfileMainActivity;
 import com.riossoftware.myrealstate.R;
-import com.riossoftware.myrealstate.UserPojo;
-import com.riossoftware.myrealstate.adds.AddHipotecaActivity;
-import com.riossoftware.myrealstate.adds.AddPropiedadActivity;
 import com.riossoftware.myrealstate.adds.DatePickerFragment;
-import com.riossoftware.myrealstate.listView.Propiedad;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddPagoActivity extends AppCompatActivity {
+public class AddGastoActivity extends AppCompatActivity {
 
-    TextView txtValor,txtFecha,txtWelcome;
-    RadioGroup rgPago;
-    RadioButton rbParcial,rbCompleto;
+    TextView txtValor,txtFecha,txtWelcome,txtDescription;
     Button btnAdd;
-    Spinner lugar;
 
     FirebaseAuth auth;
     DatabaseReference db,propiedades;
-    String id,place,tag,valor="";
+    String id,tag;
 
     AlertDialog.Builder builder;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_pago);
+        setContentView(R.layout.activity_add_gasto);
 
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
@@ -72,45 +58,14 @@ public class AddPagoActivity extends AppCompatActivity {
 
         tag=getIntent().getStringExtra("tag");
 
-        rgPago=(RadioGroup)findViewById(R.id.rgPago);
-        rbCompleto=(RadioButton)findViewById(R.id.rbCompleto);
-        rbParcial=(RadioButton)findViewById(R.id.rbParcial);
-        btnAdd=(Button)findViewById(R.id.btnAdd);
-        lugar=(Spinner) findViewById(R.id.spinPago);
-
         txtFecha=(TextView)findViewById(R.id.txtFecha);
         txtValor=(TextView) findViewById(R.id.txtValor);
         txtWelcome=(TextView)findViewById(R.id.txtWelcome);
-
+        txtDescription= (TextView) findViewById(R.id.txtDescription);
+        btnAdd=(Button) findViewById(R.id.btnAdd);
 
         //mostramos en el textview
-        txtWelcome.setText(getString(R.string.add_pay,tag));
-
-        rgPago.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i==R.id.rbCompleto){
-                    getData();
-                }else if(i==R.id.rbParcial){
-                    txtValor.setText("");
-
-                }
-            }
-        });
-
-        place="Efectivo";
-
-        lugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                place=adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        txtWelcome.setText(getString(R.string.add_gasto,tag));
 
         txtFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,61 +78,38 @@ public class AddPagoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                guardarData(txtValor.getText().toString(),txtFecha.getText().toString(),place);
+                guardarData(txtValor.getText().toString(),txtFecha.getText().toString(),txtDescription.getText().toString());
 
             }
         });
-
-
-
     }
 
-    public void getData(){
-       propiedades.child(tag).child("DATA").addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               GenericTypeIndicator<Propiedad> user=new GenericTypeIndicator<Propiedad>() {};
-               Propiedad propiedad=snapshot.getValue(user);
-               System.out.println("Data: "+propiedad);
-               txtValor.setText(propiedad.getValor());
-
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
-
-           }
-       });
-
-        System.out.println("Data v: "+valor);
-    }
-
-    public void guardarData(String valor,String fecha,String lugar){
-        if(!valor.isEmpty() && !fecha.isEmpty() && !lugar.isEmpty()) {
+    public void guardarData(String valor,String fecha,String description){
+        if(!valor.isEmpty() && !fecha.isEmpty() && !description.isEmpty()) {
             Map<String,Object> data=new HashMap<>();
 
             data.put("valor",valor);
             data.put("fecha",fecha);
-            data.put("lugar",lugar);
+            data.put("description",description);
 
-            propiedades.child(tag).child("PAGOS").child(fecha).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            propiedades.child(tag).child("GASTOS").child(description+fecha).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()) {
 
-                        Toast.makeText(AddPagoActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
-                        Intent intent =new Intent(AddPagoActivity.this, HistoricoActivity.class);
+                        Toast.makeText(AddGastoActivity.this,"Datos subidos",Toast.LENGTH_LONG).show();
+                        Intent intent =new Intent(AddGastoActivity.this, GastoActivity.class);
                         intent.putExtra("tag",tag);
                         startActivity(intent);
                         finish();
 
                     }else {
-                        Toast.makeText(AddPagoActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddGastoActivity.this,"Los datos NO puedieron ser subidos",Toast.LENGTH_LONG).show();
                     }
                 }
             });
         }else{
-            Toast.makeText(AddPagoActivity.this,"Complete todos los datos",Toast.LENGTH_LONG).show();
+            Toast.makeText(AddGastoActivity.this,"Complete todos los datos",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -207,7 +139,7 @@ public class AddPagoActivity extends AppCompatActivity {
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 FirebaseAuth.getInstance().signOut();
-                                Intent intent=new Intent(AddPagoActivity.this, LoginActivity.class);
+                                Intent intent=new Intent(AddGastoActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -228,5 +160,4 @@ public class AddPagoActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }
